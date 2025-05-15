@@ -141,6 +141,7 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id="Animation_nyago"]
 resource_name = "open locked"
+length = 0.333337
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -257,9 +258,10 @@ material_override = ExtResource("2_vaedx")
 size = Vector3(1, 2, 0.1)
 
 [node name="CSGPolygon3D" type="CSGPolygon3D" parent="Door"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.402674)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0823891)
 operation = 2
 polygon = PackedVector2Array(-0.2, 0.3, 0.2, 0.3, 0.3, 0.5, 0.2, 0.7, -0.2, 0.7, -0.3, 0.5)
+depth = 0.17
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1, 0.05)
