@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://c7or0lt8hwcmq"]
+
+[ext_resource type="PackedScene" uid="uid://cea6u4voyhnuk" path="res://src/entity/door/door.tscn" id="1_la7um"]
+[ext_resource type="PackedScene" uid="uid://dftvwhhelo66x" path="res://src/entity/door_lock/door_lock.tscn" id="2_xv147"]
+
+[sub_resource type="Environment" id="Environment_la7um"]
+
+[node name="Level" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_la7um")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.85316, 0.373849, -0.363807, 0, 0.697415, 0.716667, 0.52165, -0.611431, 0.595007, 0, 1.99637, 2.36215)
+
+[node name="Node" type="Node" parent="."]
+
+[node name="Door" parent="." instance=ExtResource("1_la7um")]
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 0, 0, 0)
+
+[node name="DoorLock" parent="Door" node_paths=PackedStringArray("_door") instance=ExtResource("2_xv147")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.883242, 1.2239, 0.057775)
+_door = NodePath("..")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75684, 2.38364)
