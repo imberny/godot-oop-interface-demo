@@ -2,33 +2,33 @@ extends Openable
 
 @export var _anim_tree: AnimationTree
 
-var _state := State.CLOSED
+var _is_open := false
 var _is_locked := false
 
 @onready var _playback: AnimationNodeStateMachinePlayback = _anim_tree["parameters/playback"]
 
 
-func get_state() -> State:
-	return _state
+func is_open() -> bool:
+	return _is_open
 
 
 func open() -> void:
-	if State.OPEN == _state:
+	if _is_open:
 		return
 
 	if _is_locked:
 		_playback.travel("open locked")
 		return
 
-	_state = State.OPEN
+	_is_open = true
 	_playback.travel("open")
 
 
 func close() -> void:
-	if State.CLOSED == _state:
+	if not _is_open:
 		return
 
-	_state = State.CLOSED
+	_is_open = false
 	_playback.travel("close")
 
 

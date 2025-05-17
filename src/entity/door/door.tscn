@@ -224,7 +224,7 @@ transitions = ["Start", "RESET", SubResource("AnimationNodeStateMachineTransitio
 size = Vector3(1, 2, 0.1)
 
 [node name="Door" type="AnimatableBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+collision_layer = 9
 script = ExtResource("1_dyg4d")
 
 [node name="Openable" type="Node" parent="." node_paths=PackedStringArray("_anim_tree")]
@@ -249,6 +249,16 @@ radius = 0.0424805
 height = 0.1
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Handle"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0722782, 0.016607, 0.0013243)
+size = Vector3(0.124985, 0.0401001, 0.0324707)
+
+[node name="Handle2" type="CSGCylinder3D" parent="Handle"]
+transform = Transform3D(1, 0, 0, 0, -1, 8.74227e-08, 0, -8.74227e-08, -1, 0, -0.16184, 5.96046e-07)
+material_override = ExtResource("2_w038q")
+radius = 0.0424805
+height = 0.1
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Handle/Handle2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0722782, 0.016607, 0.0013243)
 size = Vector3(0.124985, 0.0401001, 0.0324707)
 

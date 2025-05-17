@@ -1,11 +1,9 @@
 class_name Door extends AnimatableBody3D
 
-@onready var _openable: Openable = $Openable
-
 
 func lock() -> void:
-	_openable.lock()
+	Openable.try_get(self).lock()
 
 
 func unlock() -> void:
-	_openable.unlock()
+	Openable.try_get(self).unlock()

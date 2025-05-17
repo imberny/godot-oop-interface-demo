@@ -1,25 +1,24 @@
 class_name Openable extends Interface
 
-## Boilerplate start
-const INTERFACE_NAME := "Openable"
+#region boilerplate
+
+const INTERFACE_NAME := &"Openable"
 
 
 static func try_get(from: Node) -> Openable:
 	return try_get_interface(INTERFACE_NAME, from)
 
 
-func get_interface_name() -> String:
+func get_interface_name() -> StringName:
 	return INTERFACE_NAME
 
 
-## Boilerplate end
-
-enum State { OPEN, CLOSED }
+#endregion boilerplate
 
 
-func get_state() -> State:
+func is_open() -> bool:
 	assert(false, "METHOD NOT IMPLEMENTED")
-	return State.CLOSED
+	return false
 
 
 func open() -> void:

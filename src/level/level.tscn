@@ -1,11 +1,22 @@
-[gd_scene load_steps=4 format=3 uid="uid://c7or0lt8hwcmq"]
+[gd_scene load_steps=10 format=3 uid="uid://c7or0lt8hwcmq"]
 
+[ext_resource type="Script" uid="uid://qlmgpl1upgya" path="res://src/level/level.gd" id="1_5vox1"]
+[ext_resource type="PackedScene" uid="uid://ba70lpbiuylqs" path="res://src/entity/player/player.tscn" id="1_em31m"]
 [ext_resource type="PackedScene" uid="uid://cea6u4voyhnuk" path="res://src/entity/door/door.tscn" id="1_la7um"]
 [ext_resource type="PackedScene" uid="uid://dftvwhhelo66x" path="res://src/entity/door_lock/door_lock.tscn" id="2_xv147"]
+[ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="3_af42n"]
+[ext_resource type="Material" uid="uid://dgjiw8udooecr" path="res://addons/prototype_mini_bundle/M_prototype_dark.tres" id="4_mpbj7"]
+[ext_resource type="PackedScene" uid="uid://btkfb7cguih3m" path="res://src/entity/key_lock/key_lock.tscn" id="6_ob0n7"]
+[ext_resource type="Script" uid="uid://drjnx01fscjic" path="res://src/input/player_input.gd" id="6_w7y1s"]
 
 [sub_resource type="Environment" id="Environment_la7um"]
 
 [node name="Level" type="Node3D"]
+script = ExtResource("1_5vox1")
+
+[node name="PlayerInput" type="Node" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("6_w7y1s")
+target = NodePath("../Player")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_la7um")
@@ -13,14 +24,47 @@ environment = SubResource("Environment_la7um")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.85316, 0.373849, -0.363807, 0, 0.697415, 0.716667, 0.52165, -0.611431, 0.595007, 0, 1.99637, 2.36215)
 
-[node name="Node" type="Node" parent="."]
+[node name="Player" parent="." instance=ExtResource("1_em31m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.78814e-07, 3.04377)
 
 [node name="Door" parent="." instance=ExtResource("1_la7um")]
 transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 0, 0, 0)
 
+[node name="WORKAROUND_HACK" type="RemoteTransform3D" parent="Door"]
+editor_description = "https://github.com/godotengine/godot/issues/67257
+
+Updating any part of the transform will update the collision shape, making it move with its parent."
+transform = Transform3D(-1, 0, 8.74227e-08, 0, 1, 0, -8.74227e-08, 0, -1, 0.861976, 1.21927, 0.014651)
+remote_path = NodePath("../DoorLock")
+
 [node name="DoorLock" parent="Door" node_paths=PackedStringArray("_door") instance=ExtResource("2_xv147")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.883242, 1.2239, 0.057775)
+transform = Transform3D(-0.999999, 0, 8.74227e-08, 0, 1, 0, -8.74227e-08, 0, -0.999999, 0.861975, 1.21927, 0.014651)
 _door = NodePath("..")
 
+[node name="WORKAROUND_HACK2" type="RemoteTransform3D" parent="Door"]
+editor_description = "https://github.com/godotengine/godot/issues/67257
+
+Updating any part of the transform will update the collision shape, making it move with its parent."
+transform = Transform3D(0.662956, 0, -1.41318e-14, 0, 0.662957, 0, 1.41318e-14, 0, 0.662956, 0.861975, 1.21927, 0.100643)
+remote_path = NodePath("../KeyLock")
+
+[node name="KeyLock" parent="Door" node_paths=PackedStringArray("door_lock") instance=ExtResource("6_ob0n7")]
+transform = Transform3D(0.662956, 0, -1.41318e-14, 0, 0.662957, 0, 1.41318e-14, 0, 0.662956, 0.861975, 1.21927, 0.100643)
+door_lock = NodePath("../DoorLock")
+is_locked = true
+
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75684, 2.38364)
+physics_interpolation_mode = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.35344, 3.04377)
+
+[node name="PhantomCameraHost" type="Node" parent="Camera3D"]
+process_priority = 300
+process_physics_priority = 300
+script = ExtResource("3_af42n")
+metadata/_custom_type_script = "uid://bd046eokvcnu2"
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.5, -2)
+material_override = ExtResource("4_mpbj7")
+use_collision = true
+size = Vector3(12, 1, 13)

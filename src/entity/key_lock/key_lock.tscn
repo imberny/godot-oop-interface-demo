@@ -1,0 +1,379 @@
+[gd_scene load_steps=26 format=3 uid="uid://btkfb7cguih3m"]
+
+[ext_resource type="Script" uid="uid://bwu4cfgudhc8d" path="res://src/entity/key_lock/key_lock.gd" id="1_dfayu"]
+[ext_resource type="Script" uid="uid://cylll42vsg8bs" path="res://src/entity/key_lock/unlockable.gd" id="1_jg5mr"]
+[ext_resource type="Material" uid="uid://7to3kb1tisdd" path="res://addons/prototype_mini_bundle/M_prototype_orange.tres" id="1_v585g"]
+[ext_resource type="Material" uid="uid://dgjiw8udooecr" path="res://addons/prototype_mini_bundle/M_prototype_dark.tres" id="2_jg5mr"]
+[ext_resource type="AudioStream" uid="uid://ch17csfvm1ru3" path="res://assets/sfx/door/door_key_unlock.mp3" id="4_e72wl"]
+[ext_resource type="AudioStream" uid="uid://doh53i2vwsykg" path="res://assets/sfx/door/door_key_lock.mp3" id="5_v55wo"]
+[ext_resource type="AudioStream" uid="uid://cw8jux4tqwmmr" path="res://assets/sfx/door/door_key_fail.mp3" id="6_qr3gc"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_v585g"]
+height = 0.107849
+radius = 0.131836
+
+[sub_resource type="Animation" id="Animation_jg5mr"]
+resource_name = "lock"
+length = 0.66667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Key:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.633333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Key:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.133333, 0.466667, 0.633333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0.010792, 0.424391), Vector3(0, 0.010792, 0.293314), Vector3(0, 0.010792, 0.293314), Vector3(0, 0.010792, 0.424391)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Key:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.133333, 0.3, 0.466667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(1.5708, 1.5708, 0), Vector3(1.5708, 1.5708, 0), Vector3(3.14159, 1.5708, 0), Vector3(1.5708, 1.5708, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("LockAudio:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_e72wl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Key:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Key:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.010792, 0.424391)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Key:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1.5708, 1.5708, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("UnlockAudio:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("LockAudio:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("FailAudio:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_v55wo"]
+resource_name = "unlock"
+length = 0.66667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Key:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.633333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Key:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.133333, 0.466667, 0.633333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0.010792, 0.424391), Vector3(0, 0.010792, 0.293314), Vector3(0, 0.010792, 0.293314), Vector3(0, 0.010792, 0.424391)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Key:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.133333, 0.3, 0.466667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(1.5708, 1.5708, 0), Vector3(1.5708, 1.5708, 0), Vector3(0, 1.5708, 0), Vector3(1.5708, 1.5708, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("UnlockAudio:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_qr3gc"]
+resource_name = "fail"
+length = 0.66667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Key:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.633333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Key:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.233333, 0.333333, 0.533333, 0.633333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0.010792, 0.424391), Vector3(0, 0.010792, 0.293314), Vector3(0.0286985, 0.010792, 0.293314), Vector3(-0.0439747, 0.010792, 0.293314), Vector3(0, 0.010792, 0.293314), Vector3(0, 0.010792, 0.424391)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Key:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.233333, 0.333333, 0.533333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(1.5708, 1.5708, 0), Vector3(1.5708, 1.5708, 0), Vector3(1.22173, 1.72613, 0), Vector3(1.91986, 1.41372, 0), Vector3(1.5708, 1.5708, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("FailAudio:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_v55wo"]
+_data = {
+&"RESET": SubResource("Animation_e72wl"),
+&"fail": SubResource("Animation_qr3gc"),
+&"lock": SubResource("Animation_jg5mr"),
+&"unlock": SubResource("Animation_v55wo")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jg5mr"]
+animation = &"RESET"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_e72wl"]
+animation = &"fail"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_v55wo"]
+animation = &"lock"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qr3gc"]
+animation = &"unlock"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dfayu"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_853mu"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gbbji"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rxnt0"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_roqde"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_nym0v"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fr0mg"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_qr3gc"]
+states/RESET/node = SubResource("AnimationNodeAnimation_jg5mr")
+states/RESET/position = Vector2(370, 102)
+states/fail/node = SubResource("AnimationNodeAnimation_e72wl")
+states/fail/position = Vector2(549, 257)
+states/lock/node = SubResource("AnimationNodeAnimation_v55wo")
+states/lock/position = Vector2(549, 170)
+states/unlock/node = SubResource("AnimationNodeAnimation_qr3gc")
+states/unlock/position = Vector2(549, 100)
+transitions = ["Start", "RESET", SubResource("AnimationNodeStateMachineTransition_dfayu"), "RESET", "lock", SubResource("AnimationNodeStateMachineTransition_853mu"), "lock", "RESET", SubResource("AnimationNodeStateMachineTransition_gbbji"), "RESET", "unlock", SubResource("AnimationNodeStateMachineTransition_rxnt0"), "RESET", "fail", SubResource("AnimationNodeStateMachineTransition_roqde"), "fail", "RESET", SubResource("AnimationNodeStateMachineTransition_nym0v"), "unlock", "RESET", SubResource("AnimationNodeStateMachineTransition_fr0mg")]
+graph_offset = Vector2(-19, -40)
+
+[node name="KeyLock" type="AnimatableBody3D"]
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("1_dfayu")
+
+[node name="Unlockable" type="Node" parent="." node_paths=PackedStringArray("_anim_tree")]
+script = ExtResource("1_jg5mr")
+_key_id = &"key_1"
+_anim_tree = NodePath("../AnimationTree")
+metadata/_custom_type_script = "uid://tk1u6vr7m4nd"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -2.70128e-09, 0.0549841)
+shape = SubResource("CylinderShape3D_v585g")
+
+[node name="Lock" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.000383953, 0.0522152)
+radius = 0.133
+height = 0.114715
+material = ExtResource("1_v585g")
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="Lock"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0406572, -0.0454786)
+operation = 2
+radius = 0.0385742
+height = 0.109115
+material = ExtResource("2_jg5mr")
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="Lock"]
+transform = Transform3D(-1, 8.74228e-08, 0, 3.82137e-15, 4.37114e-08, 1, 8.74228e-08, 1, -4.37114e-08, 0.961621, 0.122515, 0.0940029)
+operation = 2
+polygon = PackedVector2Array(0.933795, -0.0312183, 0.984704, -0.0318794, 0.97082, -0.113862, 0.947018, -0.114523)
+depth = 0.15
+material = ExtResource("2_jg5mr")
+
+[node name="Key" type="CSGCylinder3D" parent="."]
+transform = Transform3D(-4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, 0, 0.010792, 0.424391)
+visible = false
+material_overlay = ExtResource("1_v585g")
+radius = 0.0883789
+height = 0.0349121
+
+[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="Key"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00308228, 0)
+operation = 2
+radius = 0.0537109
+height = 0.0651245
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Key"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.195168, -9.53674e-05, -0.0120544)
+size = Vector3(0.24794, 0.0208817, 0.0321655)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Key"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.276596, -9.53674e-05, 0.0282316)
+size = Vector3(0.0331154, 0.0208817, 0.0483379)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Key"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.232794, -9.53674e-05, 0.0186496)
+size = Vector3(0.0331154, 0.0208817, 0.0291739)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_v55wo")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+callback_mode_discrete = 0
+tree_root = SubResource("AnimationNodeStateMachine_qr3gc")
+anim_player = NodePath("../AnimationPlayer")
+
+[node name="UnlockAudio" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_e72wl")
+
+[node name="LockAudio" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("5_v55wo")
+
+[node name="FailAudio" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("6_qr3gc")
+
+[connection signal="locked" from="Unlockable" to="." method="_on_unlockable_locked"]
+[connection signal="unlocked" from="Unlockable" to="." method="_on_unlockable_unlocked"]

@@ -12,6 +12,13 @@ var _state := State.UNLOCKED
 @onready var _playback: AnimationNodeStateMachinePlayback = _anim_tree["parameters/playback"]
 
 
+func set_toggled(is_toggled: bool) -> void:
+	if is_toggled:
+		_lock()
+	else:
+		_unlock()
+
+
 func toggle() -> void:
 	match _state:
 		State.LOCKED:
@@ -30,9 +37,3 @@ func _lock() -> void:
 	_state = State.LOCKED
 	_playback.travel("lock")
 	locked.emit()
-
-
-func _input(event: InputEvent) -> void:
-	if event is InputEventKey:
-		if event.is_pressed() and event.keycode == KEY_L:
-			toggle()

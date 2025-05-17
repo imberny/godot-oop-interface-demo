@@ -1,0 +1,88 @@
+[gd_scene load_steps=14 format=3 uid="uid://ba70lpbiuylqs"]
+
+[ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="1_5qyn1"]
+[ext_resource type="Script" uid="uid://d11g6j6epkwhl" path="res://src/entity/player/controllable.gd" id="1_utwn8"]
+[ext_resource type="Script" uid="uid://ciymxqhx63nfk" path="res://src/entity/player/inventory.gd" id="2_e6o28"]
+[ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="2_utwn8"]
+[ext_resource type="Script" uid="uid://dh287iypl4fn7" path="res://src/entity/player/interactor_ray.gd" id="4_14xgr"]
+[ext_resource type="Script" uid="uid://db7l5srisnhgb" path="res://src/ui/screen_center.gd" id="5_c3o6i"]
+[ext_resource type="Texture2D" uid="uid://csu4d0voimucb" path="res://assets/sprites/crosshair/0381.png" id="6_1nyg1"]
+[ext_resource type="Texture2D" uid="uid://dyyjxnim5r11p" path="res://assets/sprites/crosshair/0382.png" id="7_e6o28"]
+[ext_resource type="Texture2D" uid="uid://x5vx6r6plu8j" path="res://assets/sprites/crosshair/0383.png" id="8_c3o6i"]
+[ext_resource type="Texture2D" uid="uid://4utkg2omndgl" path="res://assets/sprites/crosshair/0384.png" id="9_1c7qw"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ynrr6"]
+radius = 0.4
+height = 1.6
+
+[sub_resource type="Resource" id="Resource_14xgr"]
+script = ExtResource("2_utwn8")
+duration = 1.0
+transition = 0
+ease = 2
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3k6e7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_1c7qw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_c3o6i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_e6o28")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_1nyg1")
+}],
+"loop": false,
+"name": &"hit",
+"speed": 14.0
+}]
+
+[node name="Player" type="CharacterBody3D"]
+
+[node name="Controllable" type="Node" parent="." node_paths=PackedStringArray("_body", "_head", "_interactor_ray")]
+script = ExtResource("1_utwn8")
+_body = NodePath("..")
+_head = NodePath("../Head")
+_interactor_ray = NodePath("../Head/InteractorRay")
+metadata/_custom_type_script = "uid://daai380114h0v"
+
+[node name="Inventory" type="Node" parent="."]
+script = ExtResource("2_e6o28")
+_items = Array[StringName]([&"key_1"])
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+shape = SubResource("CapsuleShape3D_ynrr6")
+
+[node name="Head" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.35344, 0)
+
+[node name="PhantomCamera3D" type="Node3D" parent="Head"]
+script = ExtResource("1_5qyn1")
+priority = 5
+tween_resource = SubResource("Resource_14xgr")
+metadata/_custom_type_script = "uid://csjccrhj5wnx7"
+
+[node name="InteractorRay" type="RayCast3D" parent="Head" node_paths=PackedStringArray("_inventory")]
+target_position = Vector3(0, 0, -1.5)
+collision_mask = 8
+script = ExtResource("4_14xgr")
+_inventory = NodePath("../../Inventory")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ScreenCenter" type="Node2D" parent="CanvasLayer"]
+position = Vector2(1280, 684)
+script = ExtResource("5_c3o6i")
+
+[node name="Crosshair" type="AnimatedSprite2D" parent="CanvasLayer/ScreenCenter"]
+sprite_frames = SubResource("SpriteFrames_3k6e7")
+animation = &"hit"
+frame = 3
+frame_progress = 1.0
+
+[connection signal="interacted" from="Head/InteractorRay" to="CanvasLayer/ScreenCenter/Crosshair" method="play" binds= [&"hit"]]
