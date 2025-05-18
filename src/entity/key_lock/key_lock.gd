@@ -1,34 +1,51 @@
 class_name KeyLock extends AnimatableBody3D
 
+signal unlocked
+signal locked
+
 @export var _door_lock: DoorLock
-@export var is_locked: bool
+@export var _is_locked: bool
+@export var _anim_tree: AnimationTree
+
+@onready var _playback: AnimationNodeStateMachinePlayback = _anim_tree["parameters/playback"]
 
 
 func _ready() -> void:
-	Unlockable.try_get(self).set_locked(is_locked)
+	if _is_locked:
+		lock()
+	else:
+		unlock()
 	_door_lock.unlocked.connect(_on_door_lock_unlocked)
 	_door_lock.locked.connect(_on_door_lock_locked)
 
 
+func is_locked() -> bool:
+	return _is_locked
+
+
 func unlock() -> void:
+	if not _is_locked:
+		return
+
+	_is_locked = false
+	_playback.travel("unlock")
+	unlocked.emit()
 	_door_lock.unlock()
 
 
 func lock() -> void:
+	if _is_locked:
+		return
+
+	_is_locked = true
+	_playback.travel("lock")
+	locked.emit()
 	_door_lock.lock()
 
 
-func _on_unlockable_unlocked() -> void:
+func _on_door_lock_unlocked() -> void:
 	unlock()
 
 
-func _on_unlockable_locked() -> void:
-	lock()
-
-
-func _on_door_lock_unlocked() -> void:
-	Unlockable.try_get(self).set_locked(false)
-
-
 func _on_door_lock_locked() -> void:
-	Unlockable.try_get(self).set_locked(true)
+	lock()

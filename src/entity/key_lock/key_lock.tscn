@@ -1,8 +1,8 @@
 [gd_scene load_steps=26 format=3 uid="uid://btkfb7cguih3m"]
 
 [ext_resource type="Script" uid="uid://bwu4cfgudhc8d" path="res://src/entity/key_lock/key_lock.gd" id="1_dfayu"]
-[ext_resource type="Script" uid="uid://cylll42vsg8bs" path="res://src/entity/key_lock/unlockable.gd" id="1_jg5mr"]
 [ext_resource type="Material" uid="uid://7to3kb1tisdd" path="res://addons/prototype_mini_bundle/M_prototype_orange.tres" id="1_v585g"]
+[ext_resource type="Script" uid="uid://dybuya0m6ft4" path="res://src/entity/key_lock/interactable.gd" id="2_853mu"]
 [ext_resource type="Material" uid="uid://dgjiw8udooecr" path="res://addons/prototype_mini_bundle/M_prototype_dark.tres" id="2_jg5mr"]
 [ext_resource type="AudioStream" uid="uid://ch17csfvm1ru3" path="res://assets/sfx/door/door_key_unlock.mp3" id="4_e72wl"]
 [ext_resource type="AudioStream" uid="uid://doh53i2vwsykg" path="res://assets/sfx/door/door_key_lock.mp3" id="5_v55wo"]
@@ -296,18 +296,17 @@ states/unlock/position = Vector2(549, 100)
 transitions = ["Start", "RESET", SubResource("AnimationNodeStateMachineTransition_dfayu"), "RESET", "lock", SubResource("AnimationNodeStateMachineTransition_853mu"), "lock", "RESET", SubResource("AnimationNodeStateMachineTransition_gbbji"), "RESET", "unlock", SubResource("AnimationNodeStateMachineTransition_rxnt0"), "RESET", "fail", SubResource("AnimationNodeStateMachineTransition_roqde"), "fail", "RESET", SubResource("AnimationNodeStateMachineTransition_nym0v"), "unlock", "RESET", SubResource("AnimationNodeStateMachineTransition_fr0mg")]
 graph_offset = Vector2(-19, -40)
 
-[node name="KeyLock" type="AnimatableBody3D"]
+[node name="KeyLock" type="AnimatableBody3D" node_paths=PackedStringArray("_anim_tree")]
 editor_description = "https://github.com/godotengine/godot/issues/67257"
 collision_layer = 8
 collision_mask = 0
 sync_to_physics = false
 script = ExtResource("1_dfayu")
+_anim_tree = NodePath("AnimationTree")
 
-[node name="Unlockable" type="Node" parent="." node_paths=PackedStringArray("_anim_tree")]
-script = ExtResource("1_jg5mr")
-_key_id = &"key_1"
-_anim_tree = NodePath("../AnimationTree")
-metadata/_custom_type_script = "uid://tk1u6vr7m4nd"
+[node name="Interactable" type="Node" parent="."]
+script = ExtResource("2_853mu")
+metadata/_custom_type_script = "uid://ce4ve28fu8o2b"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -2.70128e-09, 0.0549841)
@@ -376,6 +375,3 @@ stream = ExtResource("5_v55wo")
 
 [node name="FailAudio" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("6_qr3gc")
-
-[connection signal="locked" from="Unlockable" to="." method="_on_unlockable_locked"]
-[connection signal="unlocked" from="Unlockable" to="." method="_on_unlockable_unlocked"]

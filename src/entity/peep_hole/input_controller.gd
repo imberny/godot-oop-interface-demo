@@ -1,6 +1,6 @@
 extends InputController
 
-@export var _toggleable: Toggleable
+@export var _interactable: Interactable
 @export var _pcam: PhantomCamera3D
 @export var _max_y_angle_degrees := 50.0
 @export var _max_x_angle_degrees := 30.0
@@ -11,7 +11,7 @@ extends InputController
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("interact"):
-		_toggleable.toggle()
+		_interactable.interact(owner)
 	elif event is InputEventMouseMotion:
 		event = event as InputEventMouseMotion
 		_pcam.rotation.y -= event.relative.x * Settings.mouse_sensitivity

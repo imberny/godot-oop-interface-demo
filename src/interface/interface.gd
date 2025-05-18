@@ -12,7 +12,7 @@ static func try_get_interface(interface_name: StringName, from: Node) -> Interfa
 	return null
 
 
-func _ready() -> void:
+func _enter_tree() -> void:
 	var interface_name: StringName = get_interface_name()
 	get_parent().set_meta(interface_name, self)
 

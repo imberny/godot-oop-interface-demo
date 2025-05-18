@@ -1,8 +1,8 @@
 [gd_scene load_steps=20 format=3 uid="uid://dftvwhhelo66x"]
 
-[ext_resource type="Script" uid="uid://8v1klgv6qt7p" path="res://src/entity/door_lock/toggleable.gd" id="1_atj1q"]
 [ext_resource type="Script" uid="uid://mrx4ydmbe3ao" path="res://src/entity/door_lock/door_lock.gd" id="1_bgn6o"]
 [ext_resource type="Material" uid="uid://dgjiw8udooecr" path="res://addons/prototype_mini_bundle/M_prototype_dark.tres" id="1_c60gh"]
+[ext_resource type="Script" uid="uid://uav68tdj2fj4" path="res://src/entity/door_lock/interactable.gd" id="2_hcf4q"]
 [ext_resource type="Material" uid="uid://7to3kb1tisdd" path="res://addons/prototype_mini_bundle/M_prototype_orange.tres" id="3_bgn6o"]
 [ext_resource type="AudioStream" uid="uid://biqlepiyoioey" path="res://assets/sfx/door/door_lock.mp3" id="3_fsmcq"]
 [ext_resource type="AudioStream" uid="uid://ciricf4sorinj" path="res://assets/sfx/door/door_unlock.mp3" id="4_bgn6o"]
@@ -139,17 +139,17 @@ _data = {
 [sub_resource type="BoxShape3D" id="BoxShape3D_d64ex"]
 size = Vector3(0.198181, 0.301697, 0.114151)
 
-[node name="DoorLock" type="AnimatableBody3D"]
+[node name="DoorLock" type="AnimatableBody3D" node_paths=PackedStringArray("_anim_tree")]
 editor_description = "https://github.com/godotengine/godot/issues/67257"
 collision_layer = 8
 collision_mask = 0
 sync_to_physics = false
 script = ExtResource("1_bgn6o")
+_anim_tree = NodePath("AnimationTree")
 
-[node name="Toggleable" type="Node" parent="." node_paths=PackedStringArray("_anim_tree")]
-script = ExtResource("1_atj1q")
-_anim_tree = NodePath("../AnimationTree")
-metadata/_custom_type_script = "uid://dhr3vdgg46jic"
+[node name="Interactable" type="Node" parent="."]
+script = ExtResource("2_hcf4q")
+metadata/_custom_type_script = "uid://ce4ve28fu8o2b"
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 callback_mode_process = 0
@@ -184,6 +184,3 @@ bus = &"Sfx"
 [node name="UnlockAudio" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("4_bgn6o")
 bus = &"Sfx"
-
-[connection signal="locked" from="Toggleable" to="." method="_on_toggleable_locked"]
-[connection signal="unlocked" from="Toggleable" to="." method="_on_toggleable_unlocked"]

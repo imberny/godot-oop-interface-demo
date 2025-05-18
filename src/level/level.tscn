@@ -37,12 +37,10 @@ transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 0, 0, 0)
 [node name="DoorLock" parent="Door" node_paths=PackedStringArray("_door") instance=ExtResource("2_xv147")]
 transform = Transform3D(-0.999999, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -0.999999, 0.861975, 1.21927, 0.014651)
 _door = NodePath("..")
-_is_locked = true
 
 [node name="KeyLock" parent="Door" node_paths=PackedStringArray("_door_lock") instance=ExtResource("6_ob0n7")]
 transform = Transform3D(0.662956, 0, -1.41318e-14, 0, 0.662957, 0, 1.41318e-14, 0, 0.662956, 0.861975, 1.21927, 0.100643)
 _door_lock = NodePath("../DoorLock")
-is_locked = true
 
 [node name="Peephole" parent="Door" instance=ExtResource("7_p6v4a")]
 transform = Transform3D(0.999999, 0, -2.13163e-14, 0, 1, 0, 2.13163e-14, 0, 0.999999, 0.5, 1.5, 0.0471132)
