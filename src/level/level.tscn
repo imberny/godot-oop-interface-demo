@@ -40,6 +40,7 @@ remote_path = NodePath("../DoorLock")
 [node name="DoorLock" parent="Door" node_paths=PackedStringArray("_door") instance=ExtResource("2_xv147")]
 transform = Transform3D(-0.999999, 0, 8.74227e-08, 0, 1, 0, -8.74227e-08, 0, -0.999999, 0.861975, 1.21927, 0.014651)
 _door = NodePath("..")
+_is_locked = true
 
 [node name="WORKAROUND_HACK2" type="RemoteTransform3D" parent="Door"]
 editor_description = "https://github.com/godotengine/godot/issues/67257
@@ -48,9 +49,9 @@ Updating any part of the transform will update the collision shape, making it mo
 transform = Transform3D(0.662956, 0, -1.41318e-14, 0, 0.662957, 0, 1.41318e-14, 0, 0.662956, 0.861975, 1.21927, 0.100643)
 remote_path = NodePath("../KeyLock")
 
-[node name="KeyLock" parent="Door" node_paths=PackedStringArray("door_lock") instance=ExtResource("6_ob0n7")]
+[node name="KeyLock" parent="Door" node_paths=PackedStringArray("_door_lock") instance=ExtResource("6_ob0n7")]
 transform = Transform3D(0.662956, 0, -1.41318e-14, 0, 0.662957, 0, 1.41318e-14, 0, 0.662956, 0.861975, 1.21927, 0.100643)
-door_lock = NodePath("../DoorLock")
+_door_lock = NodePath("../DoorLock")
 is_locked = true
 
 [node name="Camera3D" type="Camera3D" parent="."]

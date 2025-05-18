@@ -4,10 +4,11 @@ signal unlocked
 signal locked
 
 @export var _door: Door
+@export var _is_locked: bool
 
 
-func set_locked(is_locked: bool) -> void:
-	Toggleable.try_get(self).set_toggled(is_locked)
+func _ready() -> void:
+	Toggleable.try_get(self).set_toggled(_is_locked)
 
 
 func unlock() -> void:

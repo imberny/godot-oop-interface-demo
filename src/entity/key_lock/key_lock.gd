@@ -1,22 +1,21 @@
 class_name KeyLock extends AnimatableBody3D
 
-@export var door_lock: DoorLock
+@export var _door_lock: DoorLock
 @export var is_locked: bool
 
 
 func _ready() -> void:
 	Unlockable.try_get(self).set_locked(is_locked)
-	door_lock.set_locked(is_locked)
-	door_lock.unlocked.connect(_on_door_lock_unlocked)
-	door_lock.locked.connect(_on_door_lock_locked)
+	_door_lock.unlocked.connect(_on_door_lock_unlocked)
+	_door_lock.locked.connect(_on_door_lock_locked)
 
 
 func unlock() -> void:
-	door_lock.unlock()
+	_door_lock.unlock()
 
 
 func lock() -> void:
-	door_lock.lock()
+	_door_lock.lock()
 
 
 func _on_unlockable_unlocked() -> void:
