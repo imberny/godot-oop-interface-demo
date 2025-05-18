@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://c7or0lt8hwcmq"]
+[gd_scene load_steps=12 format=3 uid="uid://c7or0lt8hwcmq"]
 
 [ext_resource type="Script" uid="uid://qlmgpl1upgya" path="res://src/level/level.gd" id="1_5vox1"]
 [ext_resource type="PackedScene" uid="uid://ba70lpbiuylqs" path="res://src/entity/player/player.tscn" id="1_em31m"]
@@ -8,8 +8,11 @@
 [ext_resource type="Material" uid="uid://dgjiw8udooecr" path="res://addons/prototype_mini_bundle/M_prototype_dark.tres" id="4_mpbj7"]
 [ext_resource type="PackedScene" uid="uid://btkfb7cguih3m" path="res://src/entity/key_lock/key_lock.tscn" id="6_ob0n7"]
 [ext_resource type="Script" uid="uid://drjnx01fscjic" path="res://src/input/player_input.gd" id="6_w7y1s"]
+[ext_resource type="PackedScene" uid="uid://drhborye05rxu" path="res://src/entity/peep_hole/peep_hole.tscn" id="7_p6v4a"]
 
 [sub_resource type="Environment" id="Environment_la7um"]
+
+[sub_resource type="CameraAttributesPhysical" id="CameraAttributesPhysical_p6v4a"]
 
 [node name="Level" type="Node3D"]
 script = ExtResource("1_5vox1")
@@ -17,6 +20,7 @@ script = ExtResource("1_5vox1")
 [node name="PlayerInput" type="Node" parent="." node_paths=PackedStringArray("target")]
 script = ExtResource("6_w7y1s")
 target = NodePath("../Player")
+priority = 1
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_la7um")
@@ -54,9 +58,20 @@ transform = Transform3D(0.662956, 0, -1.41318e-14, 0, 0.662957, 0, 1.41318e-14, 
 _door_lock = NodePath("../DoorLock")
 is_locked = true
 
+[node name="WORKAROUND_HACK3" type="RemoteTransform3D" parent="Door"]
+editor_description = "https://github.com/godotengine/godot/issues/67257
+
+Updating any part of the transform will update the collision shape, making it move with its parent."
+transform = Transform3D(1, 0, -2.13163e-14, 0, 1, 0, 2.13163e-14, 0, 1, 0.5, 1.5, 0.0471132)
+remote_path = NodePath("../Peephole")
+
+[node name="Peephole" parent="Door" instance=ExtResource("7_p6v4a")]
+transform = Transform3D(1, 0, -2.13163e-14, 0, 1, 0, 2.13163e-14, 0, 1, 0.5, 1.5, 0.0471132)
+
 [node name="Camera3D" type="Camera3D" parent="."]
 physics_interpolation_mode = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.35344, 3.04377)
+attributes = SubResource("CameraAttributesPhysical_p6v4a")
 
 [node name="PhantomCameraHost" type="Node" parent="Camera3D"]
 process_priority = 300

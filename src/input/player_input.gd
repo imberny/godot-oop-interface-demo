@@ -1,5 +1,5 @@
 @tool
-extends Node
+extends InputController
 
 @export var target: Node
 
