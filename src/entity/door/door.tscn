@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://cea6u4voyhnuk"]
+[gd_scene load_steps=28 format=3 uid="uid://cea6u4voyhnuk"]
 
 [ext_resource type="Script" uid="uid://dm0by8mlqnks2" path="res://src/entity/door/openable.gd" id="1_8o464"]
 [ext_resource type="Script" uid="uid://bvahxbs0pja5j" path="res://src/entity/door/door.gd" id="1_dyg4d"]
@@ -209,16 +209,20 @@ advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bdnah"]
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_nyago"]
+switch_mode = 2
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_p5gaq"]
 states/RESET/node = SubResource("AnimationNodeAnimation_dyg4d")
 states/RESET/position = Vector2(374, 101)
 states/close/node = SubResource("AnimationNodeAnimation_bdnah")
-states/close/position = Vector2(686, 96)
+states/close/position = Vector2(519, -30)
 states/open/node = SubResource("AnimationNodeAnimation_nyago")
 states/open/position = Vector2(519, 100)
 "states/open locked/node" = SubResource("AnimationNodeAnimation_ysbvc")
 "states/open locked/position" = Vector2(519, 201)
-transitions = ["Start", "RESET", SubResource("AnimationNodeStateMachineTransition_ysbvc"), "RESET", "open", SubResource("AnimationNodeStateMachineTransition_1v5gi"), "open", "close", SubResource("AnimationNodeStateMachineTransition_fi3j2"), "close", "open", SubResource("AnimationNodeStateMachineTransition_vynll"), "open", "open locked", SubResource("AnimationNodeStateMachineTransition_p5gaq"), "open locked", "open", SubResource("AnimationNodeStateMachineTransition_8dnrr"), "open locked", "RESET", SubResource("AnimationNodeStateMachineTransition_dyg4d"), "RESET", "open locked", SubResource("AnimationNodeStateMachineTransition_bdnah")]
+transitions = ["Start", "RESET", SubResource("AnimationNodeStateMachineTransition_ysbvc"), "RESET", "open", SubResource("AnimationNodeStateMachineTransition_1v5gi"), "open", "close", SubResource("AnimationNodeStateMachineTransition_fi3j2"), "close", "open", SubResource("AnimationNodeStateMachineTransition_vynll"), "open", "open locked", SubResource("AnimationNodeStateMachineTransition_p5gaq"), "open locked", "open", SubResource("AnimationNodeStateMachineTransition_8dnrr"), "open locked", "RESET", SubResource("AnimationNodeStateMachineTransition_dyg4d"), "RESET", "open locked", SubResource("AnimationNodeStateMachineTransition_bdnah"), "close", "RESET", SubResource("AnimationNodeStateMachineTransition_nyago")]
+graph_offset = Vector2(-30, -163)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_e4t3a"]
 size = Vector3(1, 2, 0.1)

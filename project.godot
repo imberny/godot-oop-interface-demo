@@ -71,6 +71,10 @@ interact={
 3d_physics/layer_3="actor"
 3d_physics/layer_4="interactable"
 
+[physics]
+
+common/physics_interpolation=true
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"

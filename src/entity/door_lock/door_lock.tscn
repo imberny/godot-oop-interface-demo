@@ -140,8 +140,10 @@ _data = {
 size = Vector3(0.198181, 0.301697, 0.114151)
 
 [node name="DoorLock" type="AnimatableBody3D"]
+editor_description = "https://github.com/godotengine/godot/issues/67257"
 collision_layer = 8
 collision_mask = 0
+sync_to_physics = false
 script = ExtResource("1_bgn6o")
 
 [node name="Toggleable" type="Node" parent="." node_paths=PackedStringArray("_anim_tree")]
@@ -150,6 +152,7 @@ _anim_tree = NodePath("../AnimationTree")
 metadata/_custom_type_script = "uid://dhr3vdgg46jic"
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
+callback_mode_process = 0
 callback_mode_discrete = 0
 tree_root = SubResource("AnimationNodeStateMachine_atj1q")
 anim_player = NodePath("../AnimationPlayer")
