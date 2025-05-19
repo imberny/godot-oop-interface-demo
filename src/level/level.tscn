@@ -1,15 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://c7or0lt8hwcmq"]
+[gd_scene load_steps=9 format=3 uid="uid://c7or0lt8hwcmq"]
 
 [ext_resource type="Script" uid="uid://qlmgpl1upgya" path="res://src/level/level.gd" id="1_5vox1"]
 [ext_resource type="PackedScene" uid="uid://ba70lpbiuylqs" path="res://src/entity/player/player.tscn" id="1_em31m"]
-[ext_resource type="PackedScene" uid="uid://cea6u4voyhnuk" path="res://src/entity/door/door.tscn" id="1_la7um"]
-[ext_resource type="PackedScene" uid="uid://dftvwhhelo66x" path="res://src/entity/door_lock/door_lock.tscn" id="2_xv147"]
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="3_af42n"]
 [ext_resource type="Material" uid="uid://dgjiw8udooecr" path="res://addons/prototype_mini_bundle/M_prototype_dark.tres" id="4_mpbj7"]
-[ext_resource type="PackedScene" uid="uid://btkfb7cguih3m" path="res://src/entity/key_lock/key_lock.tscn" id="6_ob0n7"]
+[ext_resource type="PackedScene" uid="uid://c7dyq561irccf" path="res://src/entity/door/AppartmentDoor.tscn" id="4_w7y1s"]
 [ext_resource type="Script" uid="uid://drjnx01fscjic" path="res://src/input/player_input.gd" id="6_w7y1s"]
-[ext_resource type="PackedScene" uid="uid://drhborye05rxu" path="res://src/entity/peep_hole/peep_hole.tscn" id="7_p6v4a"]
-[ext_resource type="PackedScene" uid="uid://b7t8ff7pthixs" path="res://src/entity/door_handle/door_handle.tscn" id="8_5suky"]
 
 [sub_resource type="Environment" id="Environment_la7um"]
 
@@ -32,27 +28,9 @@ transform = Transform3D(0.85316, 0.373849, -0.363807, 0, 0.697415, 0.716667, 0.5
 [node name="Player" parent="." instance=ExtResource("1_em31m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.78814e-07, 3.04377)
 
-[node name="Door" parent="." instance=ExtResource("1_la7um")]
+[node name="AppartmentDoor" parent="." instance=ExtResource("4_w7y1s")]
 transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 0, 0, 0)
-
-[node name="DoorLock" parent="Door" node_paths=PackedStringArray("_door") instance=ExtResource("2_xv147")]
-transform = Transform3D(-0.999999, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -0.999999, 0.861975, 1.21927, 0.014651)
-_door = NodePath("..")
-
-[node name="KeyLock" parent="Door" node_paths=PackedStringArray("_door_lock") instance=ExtResource("6_ob0n7")]
-transform = Transform3D(0.662956, 0, -1.41318e-14, 0, 0.662957, 0, 1.41318e-14, 0, 0.662956, 0.861975, 1.21927, 0.100643)
-_door_lock = NodePath("../DoorLock")
-
-[node name="Peephole" parent="Door" instance=ExtResource("7_p6v4a")]
-transform = Transform3D(0.999999, 0, -2.13163e-14, 0, 1, 0, 2.13163e-14, 0, 0.999999, 0.5, 1.5, 0.0471132)
-
-[node name="DoorHandleFront" parent="Door" node_paths=PackedStringArray("door") instance=ExtResource("8_5suky")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.865106, 0.991176, 0.105883)
-door = NodePath("..")
-
-[node name="DoorHandleBack" parent="Door" node_paths=PackedStringArray("door") instance=ExtResource("8_5suky")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, -1, 0.865106, 0.991176, -0.0670454)
-door = NodePath("..")
+_starts_locked = true
 
 [node name="Camera3D" type="Camera3D" parent="."]
 physics_interpolation_mode = 1

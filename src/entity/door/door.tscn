@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://cea6u4voyhnuk"]
+[gd_scene load_steps=30 format=3 uid="uid://cea6u4voyhnuk"]
 
 [ext_resource type="Script" uid="uid://bvahxbs0pja5j" path="res://src/entity/door/door.gd" id="1_dyg4d"]
 [ext_resource type="Script" uid="uid://cbsvbnfsy53et" path="res://src/entity/door/interactable.gd" id="2_dyg4d"]
@@ -123,6 +123,22 @@ tracks/2/keys = {
 "values": [true]
 }
 
+[sub_resource type="Animation" id="Animation_dyg4d"]
+resource_name = "knock"
+length = 0.66667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("KnockAudio:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
 [sub_resource type="Animation" id="Animation_m5d0j"]
 resource_name = "open"
 length = 1.2
@@ -179,22 +195,6 @@ tracks/1/keys = {
 "values": [true]
 }
 
-[sub_resource type="Animation" id="Animation_dyg4d"]
-resource_name = "knock"
-length = 0.66667
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("KnockAudio:playing")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_w038q"]
 _data = {
 &"RESET": SubResource("Animation_wepa6"),
@@ -230,11 +230,6 @@ switch_mode = 2
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_vynll"]
 switch_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_p5gaq"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8dnrr"]
-switch_mode = 2
-
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dyg4d"]
 switch_mode = 2
 advance_mode = 2
@@ -243,6 +238,7 @@ advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_nyago"]
 switch_mode = 2
+advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_w038q"]
 
@@ -261,7 +257,7 @@ states/open/node = SubResource("AnimationNodeAnimation_nyago")
 states/open/position = Vector2(519, 100)
 "states/open locked/node" = SubResource("AnimationNodeAnimation_ysbvc")
 "states/open locked/position" = Vector2(519, 201)
-transitions = ["Start", "RESET", SubResource("AnimationNodeStateMachineTransition_ysbvc"), "RESET", "open", SubResource("AnimationNodeStateMachineTransition_1v5gi"), "open", "close", SubResource("AnimationNodeStateMachineTransition_fi3j2"), "close", "open", SubResource("AnimationNodeStateMachineTransition_vynll"), "open", "open locked", SubResource("AnimationNodeStateMachineTransition_p5gaq"), "open locked", "open", SubResource("AnimationNodeStateMachineTransition_8dnrr"), "open locked", "RESET", SubResource("AnimationNodeStateMachineTransition_dyg4d"), "RESET", "open locked", SubResource("AnimationNodeStateMachineTransition_bdnah"), "close", "RESET", SubResource("AnimationNodeStateMachineTransition_nyago"), "RESET", "knock", SubResource("AnimationNodeStateMachineTransition_w038q"), "knock", "RESET", SubResource("AnimationNodeStateMachineTransition_i8812")]
+transitions = ["Start", "RESET", SubResource("AnimationNodeStateMachineTransition_ysbvc"), "RESET", "open", SubResource("AnimationNodeStateMachineTransition_1v5gi"), "open", "close", SubResource("AnimationNodeStateMachineTransition_fi3j2"), "close", "open", SubResource("AnimationNodeStateMachineTransition_vynll"), "open locked", "RESET", SubResource("AnimationNodeStateMachineTransition_dyg4d"), "RESET", "open locked", SubResource("AnimationNodeStateMachineTransition_bdnah"), "close", "RESET", SubResource("AnimationNodeStateMachineTransition_nyago"), "RESET", "knock", SubResource("AnimationNodeStateMachineTransition_w038q"), "knock", "RESET", SubResource("AnimationNodeStateMachineTransition_i8812")]
 graph_offset = Vector2(-30, -163)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_e4t3a"]

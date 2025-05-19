@@ -1,0 +1,32 @@
+[gd_scene load_steps=7 format=3 uid="uid://c7dyq561irccf"]
+
+[ext_resource type="PackedScene" uid="uid://cea6u4voyhnuk" path="res://src/entity/door/door.tscn" id="1_1qfty"]
+[ext_resource type="Script" uid="uid://b0gd02vaau45h" path="res://src/entity/door/appartment_door.gd" id="1_dcovl"]
+[ext_resource type="PackedScene" uid="uid://dftvwhhelo66x" path="res://src/entity/door_lock/door_lock.tscn" id="2_dcovl"]
+[ext_resource type="PackedScene" uid="uid://btkfb7cguih3m" path="res://src/entity/key_lock/key_lock.tscn" id="3_wcjoe"]
+[ext_resource type="PackedScene" uid="uid://drhborye05rxu" path="res://src/entity/peep_hole/peep_hole.tscn" id="4_cktsy"]
+[ext_resource type="PackedScene" uid="uid://b7t8ff7pthixs" path="res://src/entity/door_handle/door_handle.tscn" id="5_jil6s"]
+
+[node name="AppartmentDoor" type="Node3D"]
+script = ExtResource("1_dcovl")
+
+[node name="Door" parent="." instance=ExtResource("1_1qfty")]
+
+[node name="DoorLock" parent="Door" node_paths=PackedStringArray("_door") instance=ExtResource("2_dcovl")]
+transform = Transform3D(-0.999999, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -0.999999, 0.861975, 1.21927, 0.014651)
+_door = NodePath("..")
+
+[node name="KeyLock" parent="Door" node_paths=PackedStringArray("_door_lock") instance=ExtResource("3_wcjoe")]
+transform = Transform3D(0.662956, 0, -1.41318e-14, 0, 0.662957, 0, 1.41318e-14, 0, 0.662956, 0.861975, 1.21927, 0.100643)
+_door_lock = NodePath("../DoorLock")
+
+[node name="Peephole" parent="Door" instance=ExtResource("4_cktsy")]
+transform = Transform3D(0.999999, 0, -2.13163e-14, 0, 1, 0, 2.13163e-14, 0, 0.999999, 0.5, 1.5, 0.0471132)
+
+[node name="DoorHandleFront" parent="Door" node_paths=PackedStringArray("door") instance=ExtResource("5_jil6s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.865106, 0.991176, 0.105883)
+door = NodePath("..")
+
+[node name="DoorHandleBack" parent="Door" node_paths=PackedStringArray("door") instance=ExtResource("5_jil6s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, -1, 0.865106, 0.991176, -0.0670454)
+door = NodePath("..")
