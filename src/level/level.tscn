@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://c7or0lt8hwcmq"]
+[gd_scene load_steps=13 format=3 uid="uid://c7or0lt8hwcmq"]
 
 [ext_resource type="Script" uid="uid://qlmgpl1upgya" path="res://src/level/level.gd" id="1_5vox1"]
 [ext_resource type="PackedScene" uid="uid://ba70lpbiuylqs" path="res://src/entity/player/player.tscn" id="1_em31m"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://btkfb7cguih3m" path="res://src/entity/key_lock/key_lock.tscn" id="6_ob0n7"]
 [ext_resource type="Script" uid="uid://drjnx01fscjic" path="res://src/input/player_input.gd" id="6_w7y1s"]
 [ext_resource type="PackedScene" uid="uid://drhborye05rxu" path="res://src/entity/peep_hole/peep_hole.tscn" id="7_p6v4a"]
+[ext_resource type="PackedScene" uid="uid://b7t8ff7pthixs" path="res://src/entity/door_handle/door_handle.tscn" id="8_5suky"]
 
 [sub_resource type="Environment" id="Environment_la7um"]
 
@@ -45,6 +46,14 @@ _door_lock = NodePath("../DoorLock")
 [node name="Peephole" parent="Door" instance=ExtResource("7_p6v4a")]
 transform = Transform3D(0.999999, 0, -2.13163e-14, 0, 1, 0, 2.13163e-14, 0, 0.999999, 0.5, 1.5, 0.0471132)
 
+[node name="DoorHandleFront" parent="Door" node_paths=PackedStringArray("door") instance=ExtResource("8_5suky")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.865106, 0.991176, 0.105883)
+door = NodePath("..")
+
+[node name="DoorHandleBack" parent="Door" node_paths=PackedStringArray("door") instance=ExtResource("8_5suky")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, -1, 0.865106, 0.991176, -0.0670454)
+door = NodePath("..")
+
 [node name="Camera3D" type="Camera3D" parent="."]
 physics_interpolation_mode = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.35344, 3.04377)
@@ -61,3 +70,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.5, -2)
 material_override = ExtResource("4_mpbj7")
 use_collision = true
 size = Vector3(12, 1, 13)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 1.75, 1)
+material_override = ExtResource("4_mpbj7")
+use_collision = true
+size = Vector3(2, 2.5, 2.5)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 1.75, 2)
+material_override = ExtResource("4_mpbj7")
+use_collision = true
+size = Vector3(2, 2.5, 0.5)

@@ -1,20 +1,20 @@
+@tool
 class_name KeyLock extends AnimatableBody3D
 
 signal unlocked
 signal locked
 
+@export var starts_locked: bool:
+	set = _set_starts_locked
 @export var _door_lock: DoorLock
-@export var _is_locked: bool
-@export var _anim_tree: AnimationTree
 
+var _is_locked: bool
+
+@onready var _anim_tree: AnimationTree = $AnimationTree
 @onready var _playback: AnimationNodeStateMachinePlayback = _anim_tree["parameters/playback"]
 
 
 func _ready() -> void:
-	if _is_locked:
-		lock()
-	else:
-		unlock()
 	_door_lock.unlocked.connect(_on_door_lock_unlocked)
 	_door_lock.locked.connect(_on_door_lock_locked)
 
@@ -43,9 +43,26 @@ func lock() -> void:
 	_door_lock.lock()
 
 
+func _set_starts_locked(value: bool) -> void:
+	starts_locked = value
+	if _door_lock:
+		_door_lock.starts_locked = value
+	if starts_locked:
+		lock()
+	else:
+		unlock()
+
+
 func _on_door_lock_unlocked() -> void:
 	unlock()
 
 
 func _on_door_lock_locked() -> void:
 	lock()
+
+
+func _get_configuration_warnings() -> PackedStringArray:
+	var warnings := []
+	if not _door_lock:
+		push_error("KeyLock requires a matching DoorLock object")
+	return warnings

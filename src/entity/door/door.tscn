@@ -1,43 +1,43 @@
-[gd_scene load_steps=28 format=3 uid="uid://cea6u4voyhnuk"]
+[gd_scene load_steps=32 format=3 uid="uid://cea6u4voyhnuk"]
 
-[ext_resource type="Script" uid="uid://dm0by8mlqnks2" path="res://src/entity/door/openable.gd" id="1_8o464"]
 [ext_resource type="Script" uid="uid://bvahxbs0pja5j" path="res://src/entity/door/door.gd" id="1_dyg4d"]
+[ext_resource type="Script" uid="uid://cbsvbnfsy53et" path="res://src/entity/door/interactable.gd" id="2_dyg4d"]
 [ext_resource type="Material" uid="uid://dyx4l6ea0am6f" path="res://addons/prototype_mini_bundle/M_prototype_green.tres" id="2_vaedx"]
-[ext_resource type="Material" uid="uid://7to3kb1tisdd" path="res://addons/prototype_mini_bundle/M_prototype_orange.tres" id="2_w038q"]
-[ext_resource type="AudioStream" uid="uid://c6vqukyayyka2" path="res://assets/sfx/door/door_open.mp3" id="3_m5d0j"]
+[ext_resource type="AudioStream" uid="uid://c00ikvep5ygq8" path="res://assets/sfx/door/door_open_creak.mp3" id="4_dyg4d"]
 [ext_resource type="AudioStream" uid="uid://b0k548udphxhf" path="res://assets/sfx/door/door_close.mp3" id="4_wepa6"]
-[ext_resource type="AudioStream" uid="uid://ciwcr6hfmn13x" path="res://assets/sfx/door/door_stuck.mp3" id="7_bdnah"]
+[ext_resource type="AudioStream" uid="uid://3w0fr20uijo7" path="res://assets/sfx/door/door_close_creak.mp3" id="5_bdnah"]
+[ext_resource type="AudioStream" uid="uid://dliku61dqstge" path="res://assets/sfx/door/door_knock.wav" id="5_wepa6"]
 
 [sub_resource type="Animation" id="Animation_wepa6"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Handle:rotation")
+tracks/0/path = NodePath(".:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(1.5708, 0, 0)]
+"values": [Vector3(0, 0, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".:rotation")
+tracks/1/path = NodePath("OpenCreakAudio:playing")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
+"update": 1,
+"values": [false]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("OpenAudio:playing")
+tracks/2/path = NodePath("CloseAudio:playing")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -49,7 +49,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("CloseAudio:playing")
+tracks/3/path = NodePath("StuckAudio:playing")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -61,10 +61,22 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("StuckAudio:playing")
+tracks/4/path = NodePath("KnockAudio:playing")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("CloseCreakAudio:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -98,6 +110,18 @@ tracks/1/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CloseCreakAudio:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_m5d0j"]
 resource_name = "open"
@@ -105,35 +129,23 @@ length = 1.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Handle:rotation")
+tracks/0/path = NodePath(".:rotation")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.233333, 0.633333, 0.766667),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(1.5708, 1.5708, 1.5708), Vector3(1.74707, 1.5708, 1.5708), Vector3(0.85556, 1.5708, 1.5708), Vector3(1.5708, 1.5708, 1.5708)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:rotation")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.266667, 0.333333, 0.766667),
+"times": PackedFloat32Array(0.0666667, 0.333333, 0.766667),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector3(0, 0, 0), Vector3(0, -0.0164061, 0), Vector3(0, 1.56282, 0)]
 }
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("OpenAudio:playing")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("OpenCreakAudio:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
@@ -167,10 +179,27 @@ tracks/1/keys = {
 "values": [true]
 }
 
+[sub_resource type="Animation" id="Animation_dyg4d"]
+resource_name = "knock"
+length = 0.66667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("KnockAudio:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_w038q"]
 _data = {
 &"RESET": SubResource("Animation_wepa6"),
 &"close": SubResource("Animation_w038q"),
+&"knock": SubResource("Animation_dyg4d"),
 &"open": SubResource("Animation_m5d0j"),
 &"open locked": SubResource("Animation_nyago")
 }
@@ -180,6 +209,9 @@ animation = &"RESET"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bdnah"]
 animation = &"close"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wepa6"]
+animation = &"knock"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ysbvc"]
 animation = &"open locked"
@@ -212,16 +244,24 @@ advance_mode = 2
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_nyago"]
 switch_mode = 2
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_w038q"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_i8812"]
+switch_mode = 2
+advance_mode = 2
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_p5gaq"]
 states/RESET/node = SubResource("AnimationNodeAnimation_dyg4d")
 states/RESET/position = Vector2(374, 101)
 states/close/node = SubResource("AnimationNodeAnimation_bdnah")
 states/close/position = Vector2(519, -30)
+states/knock/node = SubResource("AnimationNodeAnimation_wepa6")
+states/knock/position = Vector2(374, -30)
 states/open/node = SubResource("AnimationNodeAnimation_nyago")
 states/open/position = Vector2(519, 100)
 "states/open locked/node" = SubResource("AnimationNodeAnimation_ysbvc")
 "states/open locked/position" = Vector2(519, 201)
-transitions = ["Start", "RESET", SubResource("AnimationNodeStateMachineTransition_ysbvc"), "RESET", "open", SubResource("AnimationNodeStateMachineTransition_1v5gi"), "open", "close", SubResource("AnimationNodeStateMachineTransition_fi3j2"), "close", "open", SubResource("AnimationNodeStateMachineTransition_vynll"), "open", "open locked", SubResource("AnimationNodeStateMachineTransition_p5gaq"), "open locked", "open", SubResource("AnimationNodeStateMachineTransition_8dnrr"), "open locked", "RESET", SubResource("AnimationNodeStateMachineTransition_dyg4d"), "RESET", "open locked", SubResource("AnimationNodeStateMachineTransition_bdnah"), "close", "RESET", SubResource("AnimationNodeStateMachineTransition_nyago")]
+transitions = ["Start", "RESET", SubResource("AnimationNodeStateMachineTransition_ysbvc"), "RESET", "open", SubResource("AnimationNodeStateMachineTransition_1v5gi"), "open", "close", SubResource("AnimationNodeStateMachineTransition_fi3j2"), "close", "open", SubResource("AnimationNodeStateMachineTransition_vynll"), "open", "open locked", SubResource("AnimationNodeStateMachineTransition_p5gaq"), "open locked", "open", SubResource("AnimationNodeStateMachineTransition_8dnrr"), "open locked", "RESET", SubResource("AnimationNodeStateMachineTransition_dyg4d"), "RESET", "open locked", SubResource("AnimationNodeStateMachineTransition_bdnah"), "close", "RESET", SubResource("AnimationNodeStateMachineTransition_nyago"), "RESET", "knock", SubResource("AnimationNodeStateMachineTransition_w038q"), "knock", "RESET", SubResource("AnimationNodeStateMachineTransition_i8812")]
 graph_offset = Vector2(-30, -163)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_e4t3a"]
@@ -231,10 +271,9 @@ size = Vector3(1, 2, 0.1)
 collision_layer = 9
 script = ExtResource("1_dyg4d")
 
-[node name="Openable" type="Node" parent="." node_paths=PackedStringArray("_anim_tree")]
-script = ExtResource("1_8o464")
-_anim_tree = NodePath("../AnimationTree")
-metadata/_custom_type_script = "uid://buf6wdtrnkwwt"
+[node name="Interactable" type="Node" parent="."]
+script = ExtResource("2_dyg4d")
+metadata/_custom_type_script = "uid://ce4ve28fu8o2b"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -245,26 +284,6 @@ libraries = {
 callback_mode_discrete = 0
 tree_root = SubResource("AnimationNodeStateMachine_p5gaq")
 anim_player = NodePath("../AnimationPlayer")
-
-[node name="Handle" type="CSGCylinder3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -3.61999e-06, -1, 0, 1, -3.61999e-06, 0.911169, 1, 0.125637)
-material_override = ExtResource("2_w038q")
-radius = 0.0424805
-height = 0.1
-
-[node name="CSGBox3D" type="CSGBox3D" parent="Handle"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0722782, 0.016607, 0.0013243)
-size = Vector3(0.124985, 0.0401001, 0.0324707)
-
-[node name="Handle2" type="CSGCylinder3D" parent="Handle"]
-transform = Transform3D(1, 0, 0, 0, -1, 8.74227e-08, 0, -8.74227e-08, -1, 0, -0.16184, 5.96046e-07)
-material_override = ExtResource("2_w038q")
-radius = 0.0424805
-height = 0.1
-
-[node name="CSGBox3D" type="CSGBox3D" parent="Handle/Handle2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0722782, 0.016607, 0.0013243)
-size = Vector3(0.124985, 0.0401001, 0.0324707)
 
 [node name="Door" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1, 0.05)
@@ -282,9 +301,15 @@ depth = 0.17
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1, 0.05)
 shape = SubResource("BoxShape3D_e4t3a")
 
-[node name="OpenAudio" type="AudioStreamPlayer3D" parent="."]
+[node name="OpenCreakAudio" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.86351, 0.943235, 2.38419e-07)
-stream = ExtResource("3_m5d0j")
+stream = ExtResource("4_dyg4d")
+volume_db = -19.613
+bus = &"Sfx"
+
+[node name="CloseCreakAudio" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.86351, 0.943235, 2.38419e-07)
+stream = ExtResource("5_bdnah")
 bus = &"Sfx"
 
 [node name="CloseAudio" type="AudioStreamPlayer3D" parent="."]
@@ -294,5 +319,9 @@ bus = &"Sfx"
 
 [node name="StuckAudio" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.86351, 0.943235, 2.38419e-07)
-stream = ExtResource("7_bdnah")
+bus = &"Sfx"
+
+[node name="KnockAudio" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.46351, 1.34324, 2.38419e-07)
+stream = ExtResource("5_wepa6")
 bus = &"Sfx"

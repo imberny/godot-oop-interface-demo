@@ -1,0 +1,147 @@
+[gd_scene load_steps=11 format=3 uid="uid://b7t8ff7pthixs"]
+
+[ext_resource type="Script" uid="uid://ctxjcjxemgfie" path="res://src/entity/door_handle/door_handle.gd" id="1_86ndo"]
+[ext_resource type="Material" uid="uid://7to3kb1tisdd" path="res://addons/prototype_mini_bundle/M_prototype_orange.tres" id="1_w54pf"]
+[ext_resource type="Script" uid="uid://bt7vvx0pkp0mu" path="res://src/entity/door_handle/interactable.gd" id="2_wqbb2"]
+[ext_resource type="AudioStream" uid="uid://c6vqukyayyka2" path="res://assets/sfx/door/door_open.mp3" id="4_wqbb2"]
+[ext_resource type="AudioStream" uid="uid://ciwcr6hfmn13x" path="res://assets/sfx/door/door_stuck.mp3" id="5_wqbb2"]
+
+[sub_resource type="Animation" id="Animation_5kfwc"]
+resource_name = "turn"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Handle:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.233333, 0.633333, 0.766667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(1.5708, 1.5708, 1.5708), Vector3(1.74707, 1.5708, 1.5708), Vector3(0.85556, 1.5708, 1.5708), Vector3(1.5708, 1.5708, 1.5708)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TurnAudio:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_m4xo4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Handle:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1.5708, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TurnAudio:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("StuckAudio:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_wqbb2"]
+resource_name = "wiggle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Handle:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0666667, 0.133333, 0.233333, 0.333333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(1.5708, 1.5708, 1.5708), Vector3(1.71391, 1.5708, 1.5708), Vector3(1.44862, 1.5708, 1.5708), Vector3(1.5708, 1.5708, 1.5708)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("StuckAudio:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_86ndo"]
+_data = {
+&"RESET": SubResource("Animation_m4xo4"),
+&"turn": SubResource("Animation_5kfwc"),
+&"wiggle": SubResource("Animation_wqbb2")
+}
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_w54pf"]
+size = Vector3(0.17749, 0.0860596, 0.0985107)
+
+[node name="DoorHandle" type="AnimatableBody3D"]
+collision_layer = 8
+collision_mask = 0
+sync_to_physics = false
+script = ExtResource("1_86ndo")
+
+[node name="Interactable" type="Node" parent="."]
+script = ExtResource("2_wqbb2")
+metadata/_custom_type_script = "uid://ce4ve28fu8o2b"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_86ndo")
+}
+
+[node name="Handle" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+material_override = ExtResource("1_w54pf")
+radius = 0.0424805
+height = 0.1
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Handle"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0722782, 0.016607, 0.0013243)
+size = Vector3(0.124985, 0.0401001, 0.0324707)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0494385, -0.00140381, 0.00128174)
+shape = SubResource("BoxShape3D_w54pf")
+
+[node name="TurnAudio" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_wqbb2")
+bus = &"Sfx"
+
+[node name="StuckAudio" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("5_wqbb2")
+bus = &"Sfx"

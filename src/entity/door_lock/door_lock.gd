@@ -1,12 +1,16 @@
+@tool
 class_name DoorLock extends AnimatableBody3D
 
 signal unlocked
 signal locked
 
-@export var _is_locked: bool
+@export var starts_locked: bool:
+	set = _set_starts_locked
 @export var _door: Door
-@export var _anim_tree: AnimationTree
 
+var _is_locked: bool
+
+@onready var _anim_tree: AnimationTree = $AnimationTree
 @onready var _playback: AnimationNodeStateMachinePlayback = _anim_tree["parameters/playback"]
 
 
@@ -32,3 +36,12 @@ func lock() -> void:
 	_playback.travel("lock")
 	locked.emit()
 	_door.lock()
+
+
+func _set_starts_locked(value: bool) -> void:
+	starts_locked = value
+	_door.starts_locked = value
+	if starts_locked:
+		lock()
+	else:
+		unlock()
