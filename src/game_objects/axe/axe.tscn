@@ -1,0 +1,65 @@
+[gd_scene load_steps=6 format=3 uid="uid://dsp5xvdaklufv"]
+
+[ext_resource type="Script" uid="uid://xyh1ng8w2a7e" path="res://src/game_objects/wieldable_rigid_body_3d.gd" id="1_hbrf1"]
+[ext_resource type="Material" uid="uid://dgjiw8udooecr" path="res://addons/prototype_mini_bundle/M_prototype_dark.tres" id="1_rsu6u"]
+[ext_resource type="Material" uid="uid://7to3kb1tisdd" path="res://addons/prototype_mini_bundle/M_prototype_orange.tres" id="2_hbrf1"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_rsu6u"]
+height = 0.650696
+radius = 0.0200195
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hbrf1"]
+size = Vector3(0.0478668, 0.11795, 0.209778)
+
+[node name="Axe" type="RigidBody3D"]
+collision_layer = 10
+collision_mask = 3
+
+[node name="Wieldable" type="Node" parent="."]
+script = ExtResource("1_hbrf1")
+metadata/_custom_type_script = "uid://dvl0udcaxydew"
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0110463, 0)
+radius = 0.0180664
+height = 0.65
+material = ExtResource("1_rsu6u")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0030365, 0.262198, 0.0645074)
+size = Vector3(0.0483704, 0.121155, 0.207031)
+material = ExtResource("2_hbrf1")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="CSGBox3D"]
+transform = Transform3D(0, -1, 0, 0.447187, 0, 0, 0, 0, 1, -0.0185547, 0.0920888, 0.0148305)
+operation = 2
+radius = 0.111328
+height = 0.097168
+sides = 10
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="CSGBox3D"]
+transform = Transform3D(0, -1.14796, 0, 0.751363, 0, 0, 0, 0, 1.14796, 0.0120828, -0.100519, -0.013026)
+operation = 2
+radius = 0.111328
+height = 0.128784
+sides = 10
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGBox3D"]
+transform = Transform3D(0.989044, 0, 0.14762, 0, 1, 0, -0.14762, 0, 0.989044, -0.0313292, 0.00106812, 0.0173006)
+operation = 2
+size = Vector3(0.0336304, 0.206604, 0.199585)
+material = ExtResource("2_hbrf1")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGBox3D"]
+transform = Transform3D(0.985645, 0, -0.168833, 0, 1, 0, 0.168833, 0, 0.985645, 0.0357863, 0.00106812, 0.0280108)
+operation = 2
+size = Vector3(0.0336304, 0.206604, 0.178101)
+material = ExtResource("2_hbrf1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0107727, 0)
+shape = SubResource("CylinderShape3D_rsu6u")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00350189, 0.263199, 0.0649109)
+shape = SubResource("BoxShape3D_hbrf1")

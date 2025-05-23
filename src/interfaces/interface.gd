@@ -1,5 +1,5 @@
 ## Abstract base class for all interfaces.
-@icon("res://assets/icons/interface.svg")
+@icon("res://assets/icons/interface_v2.svg")
 class_name Interface extends Node
 
 
