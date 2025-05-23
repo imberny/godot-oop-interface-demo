@@ -17,13 +17,21 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-Game="*res://src/autoload/game.gd"
-Settings="*res://src/autoload/settings.gd"
+Game="*res://src/autoloads/game.gd"
+Settings="*res://src/autoloads/settings.gd"
 PhantomCameraManager="*res://addons/phantom_camera/scripts/managers/phantom_camera_manager.gd"
 
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/phantom_camera/plugin.cfg")
+
+[file_customization]
+
+folder_colors={
+"res://addons/": "red",
+"res://assets/": "orange",
+"res://src/": "green"
+}
 
 [input]
 

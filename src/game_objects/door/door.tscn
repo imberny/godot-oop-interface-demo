@@ -1,7 +1,7 @@
 [gd_scene load_steps=30 format=3 uid="uid://cea6u4voyhnuk"]
 
-[ext_resource type="Script" uid="uid://bvahxbs0pja5j" path="res://src/entity/door/door.gd" id="1_dyg4d"]
-[ext_resource type="Script" uid="uid://cbsvbnfsy53et" path="res://src/entity/door/interactable.gd" id="2_dyg4d"]
+[ext_resource type="Script" uid="uid://bvahxbs0pja5j" path="res://src/game_objects/door/door.gd" id="1_dyg4d"]
+[ext_resource type="Script" uid="uid://cbsvbnfsy53et" path="res://src/game_objects/door/interactable.gd" id="2_dyg4d"]
 [ext_resource type="Material" uid="uid://dyx4l6ea0am6f" path="res://addons/prototype_mini_bundle/M_prototype_green.tres" id="2_vaedx"]
 [ext_resource type="AudioStream" uid="uid://c00ikvep5ygq8" path="res://assets/sfx/door/door_open_creak.mp3" id="4_dyg4d"]
 [ext_resource type="AudioStream" uid="uid://b0k548udphxhf" path="res://assets/sfx/door/door_close.mp3" id="4_wepa6"]

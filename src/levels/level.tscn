@@ -1,10 +1,10 @@
 [gd_scene load_steps=9 format=3 uid="uid://c7or0lt8hwcmq"]
 
-[ext_resource type="Script" uid="uid://qlmgpl1upgya" path="res://src/level/level.gd" id="1_5vox1"]
-[ext_resource type="PackedScene" uid="uid://ba70lpbiuylqs" path="res://src/entity/player/player.tscn" id="1_em31m"]
+[ext_resource type="Script" uid="uid://qlmgpl1upgya" path="res://src/levels/level.gd" id="1_5vox1"]
+[ext_resource type="PackedScene" uid="uid://ba70lpbiuylqs" path="res://src/game_objects/player/player.tscn" id="1_em31m"]
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="3_af42n"]
 [ext_resource type="Material" uid="uid://dgjiw8udooecr" path="res://addons/prototype_mini_bundle/M_prototype_dark.tres" id="4_mpbj7"]
-[ext_resource type="PackedScene" uid="uid://c7dyq561irccf" path="res://src/entity/door/AppartmentDoor.tscn" id="4_w7y1s"]
+[ext_resource type="PackedScene" uid="uid://c7dyq561irccf" path="res://src/game_objects/door/AppartmentDoor.tscn" id="4_w7y1s"]
 [ext_resource type="Script" uid="uid://drjnx01fscjic" path="res://src/input/player_input.gd" id="6_w7y1s"]
 
 [sub_resource type="Environment" id="Environment_la7um"]

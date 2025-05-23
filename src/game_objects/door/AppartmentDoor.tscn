@@ -1,11 +1,11 @@
 [gd_scene load_steps=7 format=3 uid="uid://c7dyq561irccf"]
 
-[ext_resource type="PackedScene" uid="uid://cea6u4voyhnuk" path="res://src/entity/door/door.tscn" id="1_1qfty"]
-[ext_resource type="Script" uid="uid://b0gd02vaau45h" path="res://src/entity/door/appartment_door.gd" id="1_dcovl"]
-[ext_resource type="PackedScene" uid="uid://dftvwhhelo66x" path="res://src/entity/door_lock/door_lock.tscn" id="2_dcovl"]
-[ext_resource type="PackedScene" uid="uid://btkfb7cguih3m" path="res://src/entity/key_lock/key_lock.tscn" id="3_wcjoe"]
-[ext_resource type="PackedScene" uid="uid://drhborye05rxu" path="res://src/entity/peep_hole/peep_hole.tscn" id="4_cktsy"]
-[ext_resource type="PackedScene" uid="uid://b7t8ff7pthixs" path="res://src/entity/door_handle/door_handle.tscn" id="5_jil6s"]
+[ext_resource type="PackedScene" uid="uid://cea6u4voyhnuk" path="res://src/game_objects/door/door.tscn" id="1_1qfty"]
+[ext_resource type="Script" uid="uid://b0gd02vaau45h" path="res://src/game_objects/door/appartment_door.gd" id="1_dcovl"]
+[ext_resource type="PackedScene" uid="uid://dftvwhhelo66x" path="res://src/game_objects/door_lock/door_lock.tscn" id="2_dcovl"]
+[ext_resource type="PackedScene" uid="uid://btkfb7cguih3m" path="res://src/game_objects/key_lock/key_lock.tscn" id="3_wcjoe"]
+[ext_resource type="PackedScene" uid="uid://drhborye05rxu" path="res://src/game_objects/peep_hole/peep_hole.tscn" id="4_cktsy"]
+[ext_resource type="PackedScene" uid="uid://b7t8ff7pthixs" path="res://src/game_objects/door_handle/door_handle.tscn" id="5_jil6s"]
 
 [node name="AppartmentDoor" type="Node3D"]
 script = ExtResource("1_dcovl")

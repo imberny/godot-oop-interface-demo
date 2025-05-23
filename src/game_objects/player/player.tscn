@@ -1,18 +1,18 @@
 [gd_scene load_steps=17 format=3 uid="uid://ba70lpbiuylqs"]
 
 [ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="1_5qyn1"]
-[ext_resource type="Script" uid="uid://d11g6j6epkwhl" path="res://src/entity/player/controllable.gd" id="1_utwn8"]
-[ext_resource type="Script" uid="uid://ciymxqhx63nfk" path="res://src/entity/player/inventory.gd" id="2_e6o28"]
+[ext_resource type="Script" uid="uid://d11g6j6epkwhl" path="res://src/game_objects/player/controllable.gd" id="1_utwn8"]
+[ext_resource type="Script" uid="uid://ciymxqhx63nfk" path="res://src/game_objects/player/inventory.gd" id="2_e6o28"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="2_utwn8"]
-[ext_resource type="Script" uid="uid://dh287iypl4fn7" path="res://src/entity/player/interactor_ray.gd" id="4_14xgr"]
+[ext_resource type="Script" uid="uid://dh287iypl4fn7" path="res://src/game_objects/player/interactor_ray.gd" id="4_14xgr"]
 [ext_resource type="Script" uid="uid://db7l5srisnhgb" path="res://src/ui/screen_center.gd" id="5_c3o6i"]
 [ext_resource type="Texture2D" uid="uid://csu4d0voimucb" path="res://assets/sprites/crosshair/0381.png" id="6_1nyg1"]
-[ext_resource type="Script" uid="uid://csv3s3f34p5tr" path="res://src/entity/player/interaction_label.gd" id="6_qy1rq"]
+[ext_resource type="Script" uid="uid://csv3s3f34p5tr" path="res://src/game_objects/player/interaction_label.gd" id="6_qy1rq"]
 [ext_resource type="Texture2D" uid="uid://brcxhrqa8b8m" path="res://assets/sprites/crosshair/dot.png" id="7_c3o6i"]
 [ext_resource type="Texture2D" uid="uid://dyyjxnim5r11p" path="res://assets/sprites/crosshair/0382.png" id="7_e6o28"]
 [ext_resource type="Texture2D" uid="uid://x5vx6r6plu8j" path="res://assets/sprites/crosshair/0383.png" id="8_c3o6i"]
 [ext_resource type="Texture2D" uid="uid://4utkg2omndgl" path="res://assets/sprites/crosshair/0384.png" id="9_1c7qw"]
-[ext_resource type="Script" uid="uid://whhhuu7iqfwe" path="res://src/entity/player/crosshair.gd" id="12_1c7qw"]
+[ext_resource type="Script" uid="uid://whhhuu7iqfwe" path="res://src/game_objects/player/crosshair.gd" id="12_1c7qw"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ynrr6"]
 radius = 0.4

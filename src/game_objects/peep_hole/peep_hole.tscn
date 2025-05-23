@@ -1,8 +1,8 @@
 [gd_scene load_steps=9 format=3 uid="uid://drhborye05rxu"]
 
-[ext_resource type="Script" uid="uid://bjlf53xybp02u" path="res://src/entity/peep_hole/interactable.gd" id="2_e33ba"]
+[ext_resource type="Script" uid="uid://bjlf53xybp02u" path="res://src/game_objects/peep_hole/interactable.gd" id="2_e33ba"]
 [ext_resource type="Material" uid="uid://7to3kb1tisdd" path="res://addons/prototype_mini_bundle/M_prototype_orange.tres" id="2_tlm7b"]
-[ext_resource type="Script" uid="uid://dxsl83h711dsc" path="res://src/entity/peep_hole/input_controller.gd" id="2_uxt4y"]
+[ext_resource type="Script" uid="uid://dxsl83h711dsc" path="res://src/game_objects/peep_hole/input_controller.gd" id="2_uxt4y"]
 [ext_resource type="Material" uid="uid://brj2jayoo0l0d" path="res://addons/prototype_mini_bundle/M_prototype_blue.tres" id="3_phj77"]
 [ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="4_phj77"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="5_uxt4y"]

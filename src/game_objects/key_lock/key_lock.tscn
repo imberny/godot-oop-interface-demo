@@ -1,8 +1,8 @@
 [gd_scene load_steps=26 format=3 uid="uid://btkfb7cguih3m"]
 
-[ext_resource type="Script" uid="uid://bwu4cfgudhc8d" path="res://src/entity/key_lock/key_lock.gd" id="1_dfayu"]
+[ext_resource type="Script" uid="uid://bwu4cfgudhc8d" path="res://src/game_objects/key_lock/key_lock.gd" id="1_dfayu"]
 [ext_resource type="Material" uid="uid://7to3kb1tisdd" path="res://addons/prototype_mini_bundle/M_prototype_orange.tres" id="1_v585g"]
-[ext_resource type="Script" uid="uid://dybuya0m6ft4" path="res://src/entity/key_lock/interactable.gd" id="2_853mu"]
+[ext_resource type="Script" uid="uid://dybuya0m6ft4" path="res://src/game_objects/key_lock/interactable.gd" id="2_853mu"]
 [ext_resource type="Material" uid="uid://dgjiw8udooecr" path="res://addons/prototype_mini_bundle/M_prototype_dark.tres" id="2_jg5mr"]
 [ext_resource type="AudioStream" uid="uid://ch17csfvm1ru3" path="res://assets/sfx/door/door_key_unlock.mp3" id="4_e72wl"]
 [ext_resource type="AudioStream" uid="uid://doh53i2vwsykg" path="res://assets/sfx/door/door_key_lock.mp3" id="5_v55wo"]
