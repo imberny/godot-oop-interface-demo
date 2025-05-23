@@ -1,18 +1,19 @@
-[gd_scene load_steps=19 format=3 uid="uid://ba70lpbiuylqs"]
+[gd_scene load_steps=25 format=3 uid="uid://ba70lpbiuylqs"]
 
-[ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="1_5qyn1"]
 [ext_resource type="Script" uid="uid://d11g6j6epkwhl" path="res://src/game_objects/player/controllable.gd" id="1_utwn8"]
 [ext_resource type="Script" uid="uid://ciymxqhx63nfk" path="res://src/game_objects/player/inventory.gd" id="2_e6o28"]
 [ext_resource type="Script" uid="uid://dkrme8bfexf72" path="res://src/game_objects/player/gearable.gd" id="2_eihwr"]
-[ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="2_utwn8"]
 [ext_resource type="Script" uid="uid://dh287iypl4fn7" path="res://src/game_objects/player/interactor_ray.gd" id="4_14xgr"]
+[ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="4_wq4yp"]
+[ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="5_57otq"]
 [ext_resource type="Script" uid="uid://db7l5srisnhgb" path="res://src/ui/screen_center.gd" id="5_c3o6i"]
 [ext_resource type="Texture2D" uid="uid://csu4d0voimucb" path="res://assets/sprites/crosshair/0381.png" id="6_1nyg1"]
-[ext_resource type="Script" uid="uid://dom7hsyhy7gu4" path="res://src/game_objects/player/attachment_slot.gd" id="6_737k0"]
 [ext_resource type="Script" uid="uid://csv3s3f34p5tr" path="res://src/game_objects/player/interaction_label.gd" id="6_qy1rq"]
+[ext_resource type="Script" uid="uid://bki0lgxd45dq1" path="res://src/game_objects/player/hitscan_ray.gd" id="7_57otq"]
 [ext_resource type="Texture2D" uid="uid://brcxhrqa8b8m" path="res://assets/sprites/crosshair/dot.png" id="7_c3o6i"]
 [ext_resource type="Texture2D" uid="uid://dyyjxnim5r11p" path="res://assets/sprites/crosshair/0382.png" id="7_e6o28"]
 [ext_resource type="Texture2D" uid="uid://x5vx6r6plu8j" path="res://assets/sprites/crosshair/0383.png" id="8_c3o6i"]
+[ext_resource type="Script" uid="uid://d18jiyxq517u4" path="res://src/game_objects/player/weapon_slot.gd" id="8_tvavd"]
 [ext_resource type="Texture2D" uid="uid://4utkg2omndgl" path="res://assets/sprites/crosshair/0384.png" id="9_1c7qw"]
 [ext_resource type="Script" uid="uid://whhhuu7iqfwe" path="res://src/game_objects/player/crosshair.gd" id="12_1c7qw"]
 
@@ -20,11 +21,173 @@
 radius = 0.4
 height = 1.6
 
-[sub_resource type="Resource" id="Resource_14xgr"]
-script = ExtResource("2_utwn8")
-duration = 0.5
+[sub_resource type="Resource" id="Resource_wq4yp"]
+script = ExtResource("5_57otq")
+duration = 0.3
 transition = 0
 ease = 2
+metadata/_custom_type_script = "uid://8umksf8e80fw"
+
+[sub_resource type="Animation" id="Animation_tvavd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Head/PrimaryWeaponSlot:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.194404, -0.294709, -0.531128)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Head/PrimaryWeaponSlot:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.10312, -3.12468, 0.162857)]
+}
+
+[sub_resource type="Animation" id="Animation_57otq"]
+resource_name = "axe_swing_1"
+length = 0.66667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Head/PrimaryWeaponSlot:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.166667, 0.233333, 0.366667, 0.666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.194404, -0.294709, -0.531128), Vector3(0.376992, -0.313038, -0.465295), Vector3(0.417702, -0.385879, -0.465295), Vector3(0.417702, -0.385879, -0.704957), Vector3(0.417702, -0.584988, -0.910552), Vector3(0.194404, -0.294709, -0.531128)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Head/PrimaryWeaponSlot:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.166667, 0.233333, 0.366667, 0.666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.10312, -3.12468, 0.162857), Vector3(-0.33184, -3.1238, 0.155319), Vector3(-0.898227, -3.11459, 0.139991), Vector3(1.01158, -3.10988, 0.188001), Vector3(1.46373, -2.98353, 0.318293), Vector3(0.10312, -3.12468, 0.162857)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Head/PrimaryWeaponSlot")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.233333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"hit"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_6r0gm"]
+resource_name = "axe_swing_2"
+length = 0.66667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Head/PrimaryWeaponSlot:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.166667, 0.233333, 0.366667, 0.666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.194404, -0.294709, -0.531128), Vector3(0.328513, -0.313038, -0.465295), Vector3(0.328513, -0.313038, -0.422485), Vector3(0.20484, -0.313038, -0.422485), Vector3(0.392641, -0.313038, -0.494927), Vector3(0.194404, -0.294709, -0.531128)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Head/PrimaryWeaponSlot:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.166667, 0.233333, 0.366667, 0.666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.10312, -3.12468, 0.162857), Vector3(-0.872665, -3.12414, -0.546288), Vector3(-1.30551, -3.12414, -0.546288), Vector3(1.18508, -3.44877, 0.312414), Vector3(1.61792, -3.34056, 0.0977384), Vector3(0.10312, -3.12468, 0.162857)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Head/PrimaryWeaponSlot")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.233333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"hit"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_wq4yp"]
+resource_name = "axe_swing_3"
+length = 0.66667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Head/PrimaryWeaponSlot:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.166667, 0.233333, 0.366667, 0.666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.194404, -0.294709, -0.531128), Vector3(-0.071, -0.335, -0.491), Vector3(-0.071, -0.37, -0.491), Vector3(0.069, -0.37, -0.491), Vector3(0.069, -0.37, -0.491), Vector3(0.194404, -0.294709, -0.531128)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Head/PrimaryWeaponSlot:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.166667, 0.233333, 0.366667, 0.666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.10312, -3.12468, 0.162857), Vector3(-0.548033, -3.45052, -0.16057), Vector3(-0.980875, -3.45052, -0.16057), Vector3(1.40324, -3.66694, -0.0523599), Vector3(2.16072, -3.66694, -0.0523599), Vector3(0.10312, -3.12468, 0.162857)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Head/PrimaryWeaponSlot")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.233333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"hit"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kf77g"]
+_data = {
+&"RESET": SubResource("Animation_tvavd"),
+&"axe_swing_1": SubResource("Animation_57otq"),
+&"axe_swing_2": SubResource("Animation_6r0gm"),
+&"axe_swing_3": SubResource("Animation_wq4yp")
+}
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_3k6e7"]
 animations = [{
@@ -48,11 +211,12 @@ animations = [{
 
 [node name="Player" type="CharacterBody3D"]
 
-[node name="Controllable" type="Node" parent="." node_paths=PackedStringArray("_body", "_head", "_interactor_ray")]
+[node name="Controllable" type="Node" parent="." node_paths=PackedStringArray("_body", "_head", "_interactor_ray", "_primary_weapon")]
 script = ExtResource("1_utwn8")
 _body = NodePath("..")
 _head = NodePath("../Head")
 _interactor_ray = NodePath("../Head/InteractorRay")
+_primary_weapon = NodePath("../Head/PrimaryWeaponSlot")
 metadata/_custom_type_script = "uid://daai380114h0v"
 
 [node name="Gearable" type="Node" parent="." node_paths=PackedStringArray("_inventory")]
@@ -72,9 +236,10 @@ shape = SubResource("CapsuleShape3D_ynrr6")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.35344, 0)
 
 [node name="PhantomCamera3D" type="Node3D" parent="Head"]
-script = ExtResource("1_5qyn1")
+script = ExtResource("4_wq4yp")
 priority = 5
-tween_resource = SubResource("Resource_14xgr")
+tween_resource = SubResource("Resource_wq4yp")
+tween_on_load = false
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
 [node name="InteractorRay" type="RayCast3D" parent="Head" node_paths=PackedStringArray("_inventory")]
@@ -83,9 +248,22 @@ collision_mask = 8
 script = ExtResource("4_14xgr")
 _inventory = NodePath("../../Inventory")
 
-[node name="PrimaryWeaponSlot" type="RemoteTransform3D" parent="Head"]
-transform = Transform3D(-0.986909, 0.160397, -0.0168217, 0.161277, 0.981526, -0.102937, 8.81387e-08, -0.104303, -0.994546, 0.194404, -0.294709, -0.531128)
-script = ExtResource("6_737k0")
+[node name="HitscanRay" type="RayCast3D" parent="Head"]
+target_position = Vector3(0, 0, -1)
+collision_mask = 7
+script = ExtResource("7_57otq")
+
+[node name="PrimaryWeaponSlot" type="RemoteTransform3D" parent="Head" node_paths=PackedStringArray("anim_player", "hitscan_ray")]
+transform = Transform3D(-0.986909, 0.160397, -0.016822, 0.161277, 0.981526, -0.102937, 3.53902e-07, -0.104303, -0.994546, 0.194404, -0.294709, -0.531128)
+script = ExtResource("8_tvavd")
+anim_player = NodePath("AnimationPlayer")
+hitscan_ray = NodePath("../HitscanRay")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Head/PrimaryWeaponSlot"]
+root_node = NodePath("../../..")
+libraries = {
+&"": SubResource("AnimationLibrary_kf77g")
+}
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

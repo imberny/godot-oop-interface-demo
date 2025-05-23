@@ -12,4 +12,9 @@ static func try_get(from: Node) -> Hurtable:
 func get_interface_name() -> StringName:
 	return INTERFACE_NAME
 
+
 #endregion boilerplate
+
+
+func hurt(damage: int) -> void:
+	assert(false, "METHOD NOT IMPLEMENTED")

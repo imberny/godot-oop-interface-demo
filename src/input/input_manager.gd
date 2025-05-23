@@ -10,6 +10,7 @@ func _ready() -> void:
 func _on_tree_node_added(node: Node) -> void:
 	if node is InputController:
 		_input_controllers.push_back(node)
+		node.tree_exiting.connect(_on_tree_exiting.bind(node))
 
 
 func _process(_delta: float) -> void:
@@ -20,3 +21,7 @@ func _process(_delta: float) -> void:
 	Util.enable(main_input_controller)
 	for i in range(1, len(_input_controllers)):
 		Util.disable(_input_controllers[i])
+
+
+func _on_tree_exiting(controller: InputController) -> void:
+	_input_controllers.erase(controller)

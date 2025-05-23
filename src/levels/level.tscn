@@ -1,8 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://c7or0lt8hwcmq"]
+[gd_scene load_steps=10 format=3 uid="uid://c7or0lt8hwcmq"]
 
 [ext_resource type="Script" uid="uid://qlmgpl1upgya" path="res://src/levels/level.gd" id="1_5vox1"]
 [ext_resource type="PackedScene" uid="uid://ba70lpbiuylqs" path="res://src/game_objects/player/player.tscn" id="1_em31m"]
-[ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="3_af42n"]
+[ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="4_idw2h"]
 [ext_resource type="Material" uid="uid://dgjiw8udooecr" path="res://addons/prototype_mini_bundle/M_prototype_dark.tres" id="4_mpbj7"]
 [ext_resource type="PackedScene" uid="uid://c7dyq561irccf" path="res://src/game_objects/door/AppartmentDoor.tscn" id="4_w7y1s"]
 [ext_resource type="Script" uid="uid://drjnx01fscjic" path="res://src/input/player_input.gd" id="6_w7y1s"]
@@ -10,8 +10,6 @@
 [ext_resource type="PackedScene" uid="uid://dsp5xvdaklufv" path="res://src/game_objects/axe/axe.tscn" id="7_dv8wo"]
 
 [sub_resource type="Environment" id="Environment_la7um"]
-
-[sub_resource type="CameraAttributesPhysical" id="CameraAttributesPhysical_p6v4a"]
 
 [node name="Level" type="Node3D"]
 script = ExtResource("1_5vox1")
@@ -30,19 +28,15 @@ transform = Transform3D(0.85316, 0.373849, -0.363807, 0, 0.697415, 0.716667, 0.5
 [node name="Player" parent="." instance=ExtResource("1_em31m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.78814e-07, 3.04377)
 
-[node name="AppartmentDoor" parent="." instance=ExtResource("4_w7y1s")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 0, 0, 0)
-_starts_locked = true
-
 [node name="Camera3D" type="Camera3D" parent="."]
 physics_interpolation_mode = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.35344, 3.04377)
-attributes = SubResource("CameraAttributesPhysical_p6v4a")
+fov = 37.8493
 
 [node name="PhantomCameraHost" type="Node" parent="Camera3D"]
 process_priority = 300
 process_physics_priority = 300
-script = ExtResource("3_af42n")
+script = ExtResource("4_idw2h")
 metadata/_custom_type_script = "uid://bd046eokvcnu2"
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
@@ -66,8 +60,13 @@ size = Vector3(2, 2.5, 0.5)
 [node name="AxeHolder" parent="." instance=ExtResource("7_2tyx5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.518705, 1.04705, 0.281236)
 
+[node name="AxeHolder2" parent="." instance=ExtResource("7_2tyx5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.721, 1.04705, 0.281236)
+
 [node name="Axe" parent="." instance=ExtResource("7_dv8wo")]
 transform = Transform3D(-4.37114e-08, -1, 4.88261e-11, -0.00111705, 7.96047e-15, -0.999999, 0.999999, -4.37114e-08, -0.00111705, -0.518705, 1.08011, 0.33195)
 
 [node name="Axe2" parent="." instance=ExtResource("7_dv8wo")]
-transform = Transform3D(-4.37114e-08, -1, 4.88261e-11, -0.00111705, 7.96047e-15, -0.999999, 0.999999, -4.37114e-08, -0.00111705, -0.518705, 1.08011, 0.67401)
+transform = Transform3D(-4.37114e-08, -1, 4.88261e-11, -0.00111705, 7.96047e-15, -0.999999, 0.999999, -4.37114e-08, -0.00111705, 1.70687, 1.08011, 0.33195)
+
+[node name="AppartmentDoor" parent="." instance=ExtResource("4_w7y1s")]

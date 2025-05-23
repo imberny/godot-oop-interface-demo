@@ -52,3 +52,5 @@ func _process_move(delta: float) -> void:
 func _process_actions() -> void:
 	if Input.is_action_just_pressed("interact"):
 		_controllable.do(&"interact")
+	if Input.is_action_just_pressed("attack"):
+		_controllable.do(&"attack")

@@ -17,3 +17,10 @@ extends Node3D
 
 @onready var _door: Door = $Door
 @onready var _key_lock: KeyLock = $Door/KeyLock
+
+
+func _ready() -> void:
+	if Engine.is_editor_hint():
+		return
+
+	_door.tree_exiting.connect(queue_free)
