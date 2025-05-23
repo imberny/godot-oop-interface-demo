@@ -1,0 +1,55 @@
+[gd_scene load_steps=5 format=3 uid="uid://xdtbiq606hb"]
+
+[ext_resource type="Material" uid="uid://7to3kb1tisdd" path="res://addons/prototype_mini_bundle/M_prototype_orange.tres" id="1_5kcc8"]
+[ext_resource type="Script" uid="uid://vh7k1rwxuk0u" path="res://src/game_objects/axe_holder/interactable.gd" id="1_touws"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_touws"]
+size = Vector3(0.286133, 0.0794678, 0.0222473)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_touws"]
+radius = 0.1
+
+[node name="AxeHolder" type="StaticBody3D"]
+collision_layer = 8
+collision_mask = 0
+
+[node name="Interactable" type="Node" parent="." node_paths=PackedStringArray("_slot_marker", "_shape_cast")]
+script = ExtResource("1_touws")
+_slot_marker = NodePath("../SlotMarker")
+_shape_cast = NodePath("../ShapeCast3D")
+metadata/_custom_type_script = "uid://ce4ve28fu8o2b"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00439453, 0.0283813, 0.0341339)
+shape = SubResource("BoxShape3D_touws")
+
+[node name="Handle1" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.214311, -0.00343537, 0.0528674)
+use_collision = true
+size = Vector3(0.010376, 0.0212402, 0.112183)
+material = ExtResource("1_5kcc8")
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="Handle1"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -3.00407e-05, 0.0319519, 0.044387)
+size = Vector3(0.010376, 0.0212402, 0.0482788)
+material = ExtResource("1_5kcc8")
+
+[node name="Handle2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.212942, -0.00343537, 0.0528674)
+use_collision = true
+size = Vector3(0.010376, 0.0212402, 0.112183)
+material = ExtResource("1_5kcc8")
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="Handle2"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.0319519, 0.044387)
+size = Vector3(0.010376, 0.0212402, 0.0482788)
+material = ExtResource("1_5kcc8")
+
+[node name="SlotMarker" type="Marker3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, 0, -4.37114e-08, 1.91069e-15, -1, 1, -4.37114e-08, -4.37114e-08, -0.018484, 0.0268145, 0.0367381)
+
+[node name="ShapeCast3D" type="ShapeCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0164439, 0.0120763, 0.0398276)
+shape = SubResource("SphereShape3D_touws")
+target_position = Vector3(0, 0, 0)
+collision_mask = 2

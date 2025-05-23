@@ -1,8 +1,9 @@
-[gd_scene load_steps=18 format=3 uid="uid://ba70lpbiuylqs"]
+[gd_scene load_steps=19 format=3 uid="uid://ba70lpbiuylqs"]
 
 [ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="1_5qyn1"]
 [ext_resource type="Script" uid="uid://d11g6j6epkwhl" path="res://src/game_objects/player/controllable.gd" id="1_utwn8"]
 [ext_resource type="Script" uid="uid://ciymxqhx63nfk" path="res://src/game_objects/player/inventory.gd" id="2_e6o28"]
+[ext_resource type="Script" uid="uid://dkrme8bfexf72" path="res://src/game_objects/player/gearable.gd" id="2_eihwr"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="2_utwn8"]
 [ext_resource type="Script" uid="uid://dh287iypl4fn7" path="res://src/game_objects/player/interactor_ray.gd" id="4_14xgr"]
 [ext_resource type="Script" uid="uid://db7l5srisnhgb" path="res://src/ui/screen_center.gd" id="5_c3o6i"]
@@ -54,9 +55,14 @@ _head = NodePath("../Head")
 _interactor_ray = NodePath("../Head/InteractorRay")
 metadata/_custom_type_script = "uid://daai380114h0v"
 
-[node name="Inventory" type="Node" parent="."]
+[node name="Gearable" type="Node" parent="." node_paths=PackedStringArray("_inventory")]
+script = ExtResource("2_eihwr")
+_inventory = NodePath("../Inventory")
+
+[node name="Inventory" type="Node" parent="." node_paths=PackedStringArray("_primary_slot")]
 script = ExtResource("2_e6o28")
 _items = Array[StringName]([&"key_1"])
+_primary_slot = NodePath("../Head/PrimaryWeaponSlot")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
@@ -71,14 +77,13 @@ priority = 5
 tween_resource = SubResource("Resource_14xgr")
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
-[node name="InteractorRay" type="RayCast3D" parent="Head" node_paths=PackedStringArray("_inventory", "_weapon_slot")]
+[node name="InteractorRay" type="RayCast3D" parent="Head" node_paths=PackedStringArray("_inventory")]
 target_position = Vector3(0, 0, -2)
 collision_mask = 8
 script = ExtResource("4_14xgr")
 _inventory = NodePath("../../Inventory")
-_weapon_slot = NodePath("../WeaponSlot")
 
-[node name="WeaponSlot" type="RemoteTransform3D" parent="Head"]
+[node name="PrimaryWeaponSlot" type="RemoteTransform3D" parent="Head"]
 transform = Transform3D(-0.986909, 0.160397, -0.0168217, 0.161277, 0.981526, -0.102937, 8.81387e-08, -0.104303, -0.994546, 0.194404, -0.294709, -0.531128)
 script = ExtResource("6_737k0")
 
