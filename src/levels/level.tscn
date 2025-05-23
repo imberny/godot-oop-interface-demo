@@ -57,6 +57,12 @@ material_override = ExtResource("4_mpbj7")
 use_collision = true
 size = Vector3(2, 2.5, 0.5)
 
+[node name="CSGBox3D4" type="CSGBox3D" parent="CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0.75, 2.5)
+material_override = ExtResource("4_mpbj7")
+use_collision = true
+size = Vector3(1, 0.5, 0.5)
+
 [node name="AxeHolder" parent="." instance=ExtResource("7_2tyx5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.518705, 1.04705, 0.281236)
 

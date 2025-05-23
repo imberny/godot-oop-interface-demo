@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://vh7k1rwxuk0u" path="res://src/game_objects/axe_holder/interactable.gd" id="1_touws"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_touws"]
-size = Vector3(0.286133, 0.0794678, 0.0222473)
+size = Vector3(0.398193, 0.0794678, 0.0222473)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_touws"]
 radius = 0.1
@@ -20,7 +20,7 @@ _shape_cast = NodePath("../ShapeCast3D")
 metadata/_custom_type_script = "uid://ce4ve28fu8o2b"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00439453, 0.0283813, 0.0341339)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000366239, 0.0283813, 0.0160824)
 shape = SubResource("BoxShape3D_touws")
 
 [node name="Handle1" type="CSGBox3D" parent="."]
@@ -47,6 +47,7 @@ material = ExtResource("1_5kcc8")
 
 [node name="SlotMarker" type="Marker3D" parent="."]
 transform = Transform3D(-4.37114e-08, -1, 0, -4.37114e-08, 1.91069e-15, -1, 1, -4.37114e-08, -4.37114e-08, -0.018484, 0.0268145, 0.0367381)
+gizmo_extents = 0.1
 
 [node name="ShapeCast3D" type="ShapeCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0164439, 0.0120763, 0.0398276)

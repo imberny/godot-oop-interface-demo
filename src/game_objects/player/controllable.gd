@@ -8,6 +8,7 @@ extends Controllable
 @export var _speed_max := 5.0
 @export var _acceleration := 8.0
 @export var _deceleration := 12.0
+@export var _jump_speed := 5.0
 
 @export_group("Combat")
 @export var _primary_weapon: WeaponSlot
@@ -22,12 +23,21 @@ func turn(turn_amount: Vector2, _delta: float) -> void:
 
 
 func move(motion: Vector3, delta: float) -> void:
+	var gravity: Vector3 = (
+		ProjectSettings.get_setting("physics/3d/default_gravity")
+		* ProjectSettings.get_setting("physics/3d/default_gravity_vector")
+	)
+
 	var local_motion := _body.basis * motion
-	var desired_velocity := local_motion * _speed_max
+	var desired_velocity_xz := local_motion * _speed_max
+	var velocity_xz := Vector3(_velocity.x, 0.0, _velocity.z)
+	var velocity_y := Vector3(0.0, _velocity.y, 0.0) + gravity * delta
 	# https://www.rorydriscoll.com/2016/03/07/frame-rate-independent-damping-using-lerp/
-	_velocity = _velocity.lerp(desired_velocity, 1.0 - exp(-_acceleration * delta))
+	velocity_xz = velocity_xz.lerp(desired_velocity_xz, 1.0 - exp(-_acceleration * delta))
+	_velocity = velocity_xz + velocity_y
 	_body.velocity = _velocity
 	_body.move_and_slide()
+	_velocity = _body.velocity
 
 
 func do(action: StringName) -> void:
@@ -36,6 +46,8 @@ func do(action: StringName) -> void:
 			_try_interact()
 		&"attack":
 			_try_attack()
+		&"jump":
+			_try_jump()
 
 
 func _try_interact() -> void:
@@ -45,3 +57,8 @@ func _try_interact() -> void:
 
 func _try_attack() -> void:
 	_primary_weapon.swing()
+
+
+func _try_jump() -> void:
+	if _body.is_on_floor():
+		_velocity.y = _jump_speed

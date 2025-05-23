@@ -210,12 +210,15 @@ animations = [{
 }]
 
 [node name="Player" type="CharacterBody3D"]
+collision_layer = 4
+collision_mask = 7
 
 [node name="Controllable" type="Node" parent="." node_paths=PackedStringArray("_body", "_head", "_interactor_ray", "_primary_weapon")]
 script = ExtResource("1_utwn8")
 _body = NodePath("..")
 _head = NodePath("../Head")
 _interactor_ray = NodePath("../Head/InteractorRay")
+_jump_speed = 3.0
 _primary_weapon = NodePath("../Head/PrimaryWeaponSlot")
 metadata/_custom_type_script = "uid://daai380114h0v"
 

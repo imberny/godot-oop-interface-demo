@@ -1,10 +1,11 @@
-[gd_scene load_steps=31 format=3 uid="uid://cea6u4voyhnuk"]
+[gd_scene load_steps=32 format=3 uid="uid://cea6u4voyhnuk"]
 
 [ext_resource type="Script" uid="uid://bvahxbs0pja5j" path="res://src/game_objects/door/door.gd" id="1_dyg4d"]
 [ext_resource type="Script" uid="uid://cbsvbnfsy53et" path="res://src/game_objects/door/interactable.gd" id="2_dyg4d"]
 [ext_resource type="Material" uid="uid://dyx4l6ea0am6f" path="res://addons/prototype_mini_bundle/M_prototype_green.tres" id="2_vaedx"]
-[ext_resource type="Script" uid="uid://b8mc5xumjt3kj" path="res://src/game_objects/door/hurtable.gd" id="3_qxsa1"]
+[ext_resource type="Script" uid="uid://b8mc5xumjt3kj" path="res://src/game_objects/hurtable.gd" id="3_qxsa1"]
 [ext_resource type="AudioStream" uid="uid://c00ikvep5ygq8" path="res://assets/sfx/door/door_open_creak.mp3" id="4_dyg4d"]
+[ext_resource type="PackedScene" uid="uid://dxita103a2bmf" path="res://src/components/health.tscn" id="4_s7sls"]
 [ext_resource type="AudioStream" uid="uid://b0k548udphxhf" path="res://assets/sfx/door/door_close.mp3" id="4_wepa6"]
 [ext_resource type="AudioStream" uid="uid://3w0fr20uijo7" path="res://assets/sfx/door/door_close_creak.mp3" id="5_bdnah"]
 [ext_resource type="AudioStream" uid="uid://dliku61dqstge" path="res://assets/sfx/door/door_knock.wav" id="5_wepa6"]
@@ -272,9 +273,13 @@ script = ExtResource("1_dyg4d")
 script = ExtResource("2_dyg4d")
 metadata/_custom_type_script = "uid://ce4ve28fu8o2b"
 
-[node name="Hurtable" type="Node" parent="."]
+[node name="Hurtable" type="Node" parent="." node_paths=PackedStringArray("_health")]
 script = ExtResource("3_qxsa1")
+_health = NodePath("../Health")
 metadata/_custom_type_script = "uid://cu2rw2dvul8tf"
+
+[node name="Health" parent="." instance=ExtResource("4_s7sls")]
+_health_max = 30
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -290,13 +295,6 @@ anim_player = NodePath("../AnimationPlayer")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1, 0.05)
 material_override = ExtResource("2_vaedx")
 size = Vector3(1, 2, 0.1)
-
-[node name="CSGPolygon3D" type="CSGPolygon3D" parent="Door"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0823891)
-visible = false
-operation = 2
-polygon = PackedVector2Array(-0.2, 0.3, 0.2, 0.3, 0.3, 0.5, 0.2, 0.7, -0.2, 0.7, -0.3, 0.5)
-depth = 0.17
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1, 0.05)

@@ -1,8 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://b7t8ff7pthixs"]
+[gd_scene load_steps=13 format=3 uid="uid://b7t8ff7pthixs"]
 
 [ext_resource type="Script" uid="uid://ctxjcjxemgfie" path="res://src/game_objects/door_handle/door_handle.gd" id="1_86ndo"]
 [ext_resource type="Material" uid="uid://7to3kb1tisdd" path="res://addons/prototype_mini_bundle/M_prototype_orange.tres" id="1_w54pf"]
 [ext_resource type="Script" uid="uid://bt7vvx0pkp0mu" path="res://src/game_objects/door_handle/interactable.gd" id="2_wqbb2"]
+[ext_resource type="Script" uid="uid://b8mc5xumjt3kj" path="res://src/game_objects/hurtable.gd" id="3_bmj2r"]
+[ext_resource type="PackedScene" uid="uid://dxita103a2bmf" path="res://src/components/health.tscn" id="4_by1ar"]
 [ext_resource type="AudioStream" uid="uid://c6vqukyayyka2" path="res://assets/sfx/door/door_open.mp3" id="4_wqbb2"]
 [ext_resource type="AudioStream" uid="uid://ciwcr6hfmn13x" path="res://assets/sfx/door/door_stuck.mp3" id="5_wqbb2"]
 
@@ -110,7 +112,7 @@ _data = {
 size = Vector3(0.17749, 0.0860596, 0.0985107)
 
 [node name="DoorHandle" type="AnimatableBody3D"]
-collision_layer = 8
+collision_layer = 9
 collision_mask = 0
 sync_to_physics = false
 script = ExtResource("1_86ndo")
@@ -118,6 +120,14 @@ script = ExtResource("1_86ndo")
 [node name="Interactable" type="Node" parent="."]
 script = ExtResource("2_wqbb2")
 metadata/_custom_type_script = "uid://ce4ve28fu8o2b"
+
+[node name="Hurtable" type="Node" parent="." node_paths=PackedStringArray("_health")]
+script = ExtResource("3_bmj2r")
+_health = NodePath("../Health")
+metadata/_custom_type_script = "uid://cu2rw2dvul8tf"
+
+[node name="Health" parent="." instance=ExtResource("4_by1ar")]
+_health_max = 15
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

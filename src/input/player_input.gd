@@ -54,3 +54,5 @@ func _process_actions() -> void:
 		_controllable.do(&"interact")
 	if Input.is_action_just_pressed("attack"):
 		_controllable.do(&"attack")
+	if Input.is_action_just_pressed("jump"):
+		_controllable.do(&"jump")
