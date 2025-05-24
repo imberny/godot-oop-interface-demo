@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://d4ho4y6ob6om"]
+
+[ext_resource type="Script" uid="uid://cyc8xsbwg0s5a" path="res://src/effects/instant_particles.gd" id="1_dbk2c"]
+[ext_resource type="Material" uid="uid://dyx4l6ea0am6f" path="res://addons/prototype_mini_bundle/M_prototype_green.tres" id="2_ffbue"]
+[ext_resource type="AudioStream" uid="uid://b4prdnsfav3oj" path="res://assets/sfx/door/door_break.wav" id="3_ffbue"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_blq55"]
+particle_flag_rotate_y = true
+emission_shape_scale = Vector3(0.6, 1.09, 0.12)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+angle_min = -199.7
+angle_max = 144.4
+direction = Vector3(0, 0.5, 0)
+spread = 10.994
+initial_velocity_min = 3.0
+initial_velocity_max = 4.0
+angular_velocity_min = -30.21
+angular_velocity_max = 50.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_dja74"]
+material = ExtResource("2_ffbue")
+size = Vector3(0.095, 0.165, 0.085)
+
+[node name="DoorBreakFx" type="Node3D"]
+script = ExtResource("1_dbk2c")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.617086, 1.17053, 0)
+emitting = false
+amount = 23
+lifetime = 1.5
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_blq55")
+draw_pass_1 = SubResource("BoxMesh_dja74")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.05444, 1.96462, 4.76837e-07)
+stream = ExtResource("3_ffbue")
+autoplay = true

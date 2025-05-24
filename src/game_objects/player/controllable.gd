@@ -11,6 +11,7 @@ extends Controllable
 @export var _jump_speed := 5.0
 
 @export_group("Combat")
+@export var _inventory: Inventory
 @export var _primary_weapon: WeaponSlot
 
 var _velocity: Vector3
@@ -43,22 +44,23 @@ func move(motion: Vector3, delta: float) -> void:
 func do(action: StringName) -> void:
 	match action:
 		&"interact":
-			_try_interact()
+			_try_interacting()
 		&"attack":
-			_try_attack()
+			_try_attacking()
 		&"jump":
-			_try_jump()
+			_try_jumping()
 
 
-func _try_interact() -> void:
+func _try_interacting() -> void:
 	if _interactor_ray.can_interact():
 		_interactor_ray.interact()
 
 
-func _try_attack() -> void:
-	_primary_weapon.swing()
+func _try_attacking() -> void:
+	if _inventory.has_primary():
+		_primary_weapon.swing()
 
 
-func _try_jump() -> void:
+func _try_jumping() -> void:
 	if _body.is_on_floor():
 		_velocity.y = _jump_speed

@@ -1,5 +1,7 @@
 extends Wieldable
 
+@export var _damage := 1
+
 var _collision_shapes: Array[CollisionShape3D]
 
 @onready var body: RigidBody3D = get_parent()
@@ -16,6 +18,10 @@ func wield() -> void:
 
 func drop() -> void:
 	_set_physics(true)
+
+
+func get_damage() -> int:
+	return _damage
 
 
 func _set_physics(is_enabled: bool) -> void:

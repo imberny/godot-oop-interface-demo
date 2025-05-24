@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://dxita103a2bmf"]
+[gd_scene load_steps=3 format=3 uid="uid://dxita103a2bmf"]
 
 [ext_resource type="Script" uid="uid://cpef1stpyw2kp" path="res://src/components/health.gd" id="1_ax15w"]
+[ext_resource type="PackedScene" uid="uid://d4ho4y6ob6om" path="res://src/game_objects/door/break/door_break_fx.tscn" id="2_cacj2"]
 
 [node name="Health" type="Node"]
 script = ExtResource("1_ax15w")
+_death_scene = ExtResource("2_cacj2")

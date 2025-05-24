@@ -22,3 +22,8 @@ func wield() -> void:
 
 func drop() -> void:
 	assert(false, "METHOD NOT IMPLEMENTED")
+
+
+func get_damage() -> int:
+	assert(false, "METHOD NOT IMPLEMENTED")
+	return 0

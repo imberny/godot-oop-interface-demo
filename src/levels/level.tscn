@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://ba70lpbiuylqs" path="res://src/game_objects/player/player.tscn" id="1_em31m"]
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="4_idw2h"]
 [ext_resource type="Material" uid="uid://dgjiw8udooecr" path="res://addons/prototype_mini_bundle/M_prototype_dark.tres" id="4_mpbj7"]
-[ext_resource type="PackedScene" uid="uid://c7dyq561irccf" path="res://src/game_objects/door/AppartmentDoor.tscn" id="4_w7y1s"]
+[ext_resource type="PackedScene" uid="uid://c7dyq561irccf" path="res://src/game_objects/appartment_door/appartment_door.tscn" id="4_w7y1s"]
 [ext_resource type="Script" uid="uid://drjnx01fscjic" path="res://src/input/player_input.gd" id="6_w7y1s"]
 [ext_resource type="PackedScene" uid="uid://xdtbiq606hb" path="res://src/game_objects/axe_holder/axe_holder.tscn" id="7_2tyx5"]
 [ext_resource type="PackedScene" uid="uid://dsp5xvdaklufv" path="res://src/game_objects/axe/axe.tscn" id="7_dv8wo"]
@@ -76,3 +76,4 @@ transform = Transform3D(-4.37114e-08, -1, 4.88261e-11, -0.00111705, 7.96047e-15,
 transform = Transform3D(-4.37114e-08, -1, 4.88261e-11, -0.00111705, 7.96047e-15, -0.999999, 0.999999, -4.37114e-08, -0.00111705, 1.70687, 1.08011, 0.33195)
 
 [node name="AppartmentDoor" parent="." instance=ExtResource("4_w7y1s")]
+_starts_locked = true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://ba70lpbiuylqs"]
+[gd_scene load_steps=27 format=3 uid="uid://ba70lpbiuylqs"]
 
 [ext_resource type="Script" uid="uid://d11g6j6epkwhl" path="res://src/game_objects/player/controllable.gd" id="1_utwn8"]
 [ext_resource type="Script" uid="uid://ciymxqhx63nfk" path="res://src/game_objects/player/inventory.gd" id="2_e6o28"]
@@ -12,9 +12,11 @@
 [ext_resource type="Script" uid="uid://bki0lgxd45dq1" path="res://src/game_objects/player/hitscan_ray.gd" id="7_57otq"]
 [ext_resource type="Texture2D" uid="uid://brcxhrqa8b8m" path="res://assets/sprites/crosshair/dot.png" id="7_c3o6i"]
 [ext_resource type="Texture2D" uid="uid://dyyjxnim5r11p" path="res://assets/sprites/crosshair/0382.png" id="7_e6o28"]
+[ext_resource type="PackedScene" uid="uid://bx56y5ps8768y" path="res://src/effects/impact_wood/impact_wood.tscn" id="8_57otq"]
 [ext_resource type="Texture2D" uid="uid://x5vx6r6plu8j" path="res://assets/sprites/crosshair/0383.png" id="8_c3o6i"]
 [ext_resource type="Script" uid="uid://d18jiyxq517u4" path="res://src/game_objects/player/weapon_slot.gd" id="8_tvavd"]
 [ext_resource type="Texture2D" uid="uid://4utkg2omndgl" path="res://assets/sprites/crosshair/0384.png" id="9_1c7qw"]
+[ext_resource type="AudioStream" uid="uid://cqj3wqma6vkxp" path="res://assets/sfx/weapon/axe_swing.wav" id="10_tvavd"]
 [ext_resource type="Script" uid="uid://whhhuu7iqfwe" path="res://src/game_objects/player/crosshair.gd" id="12_1c7qw"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ynrr6"]
@@ -53,6 +55,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector3(0.10312, -3.12468, 0.162857)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Head/PrimaryWeaponSlot/Swing:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_57otq"]
@@ -96,6 +110,18 @@ tracks/2/keys = {
 "method": &"hit"
 }]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Head/PrimaryWeaponSlot/Swing:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_6r0gm"]
 resource_name = "axe_swing_2"
@@ -137,6 +163,18 @@ tracks/2/keys = {
 "args": [],
 "method": &"hit"
 }]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Head/PrimaryWeaponSlot/Swing:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_wq4yp"]
@@ -180,6 +218,18 @@ tracks/2/keys = {
 "method": &"hit"
 }]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Head/PrimaryWeaponSlot/Swing:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kf77g"]
 _data = {
@@ -213,12 +263,13 @@ animations = [{
 collision_layer = 4
 collision_mask = 7
 
-[node name="Controllable" type="Node" parent="." node_paths=PackedStringArray("_body", "_head", "_interactor_ray", "_primary_weapon")]
+[node name="Controllable" type="Node" parent="." node_paths=PackedStringArray("_body", "_head", "_interactor_ray", "_inventory", "_primary_weapon")]
 script = ExtResource("1_utwn8")
 _body = NodePath("..")
 _head = NodePath("../Head")
 _interactor_ray = NodePath("../Head/InteractorRay")
 _jump_speed = 3.0
+_inventory = NodePath("../Inventory")
 _primary_weapon = NodePath("../Head/PrimaryWeaponSlot")
 metadata/_custom_type_script = "uid://daai380114h0v"
 
@@ -226,9 +277,10 @@ metadata/_custom_type_script = "uid://daai380114h0v"
 script = ExtResource("2_eihwr")
 _inventory = NodePath("../Inventory")
 
-[node name="Inventory" type="Node" parent="." node_paths=PackedStringArray("_primary_slot")]
+[node name="Inventory" type="Node" parent="." node_paths=PackedStringArray("_hitscan_ray", "_primary_slot")]
 script = ExtResource("2_e6o28")
 _items = Array[StringName]([&"key_1"])
+_hitscan_ray = NodePath("../Head/HitscanRay")
 _primary_slot = NodePath("../Head/PrimaryWeaponSlot")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -255,6 +307,7 @@ _inventory = NodePath("../../Inventory")
 target_position = Vector3(0, 0, -1)
 collision_mask = 7
 script = ExtResource("7_57otq")
+_wood_impact_scene = ExtResource("8_57otq")
 
 [node name="PrimaryWeaponSlot" type="RemoteTransform3D" parent="Head" node_paths=PackedStringArray("anim_player", "hitscan_ray")]
 transform = Transform3D(-0.986909, 0.160397, -0.016822, 0.161277, 0.981526, -0.102937, 3.53902e-07, -0.104303, -0.994546, 0.194404, -0.294709, -0.531128)
@@ -267,6 +320,9 @@ root_node = NodePath("../../..")
 libraries = {
 &"": SubResource("AnimationLibrary_kf77g")
 }
+
+[node name="Swing" type="AudioStreamPlayer3D" parent="Head/PrimaryWeaponSlot"]
+stream = ExtResource("10_tvavd")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
