@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://c7or0lt8hwcmq"]
+[gd_scene load_steps=13 format=3 uid="uid://c7or0lt8hwcmq"]
 
 [ext_resource type="Script" uid="uid://qlmgpl1upgya" path="res://src/levels/level.gd" id="1_5vox1"]
 [ext_resource type="PackedScene" uid="uid://ba70lpbiuylqs" path="res://src/game_objects/player/player.tscn" id="1_em31m"]
@@ -9,7 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://xdtbiq606hb" path="res://src/game_objects/axe_holder/axe_holder.tscn" id="7_2tyx5"]
 [ext_resource type="PackedScene" uid="uid://dsp5xvdaklufv" path="res://src/game_objects/axe/axe.tscn" id="7_dv8wo"]
 [ext_resource type="PackedScene" uid="uid://dk2olj42clr1b" path="res://src/game_objects/torch/torch.tscn" id="8_54iga"]
-[ext_resource type="PackedScene" uid="uid://brobu08oev37t" path="res://src/effects/fire/fire_vfx.tscn" id="10_idw2h"]
+[ext_resource type="PackedScene" uid="uid://plgc0ruu44uj" path="res://src/game_objects/campfire/campfire.tscn" id="10_idw2h"]
+[ext_resource type="PackedScene" uid="uid://dvxvh5vvjild1" path="res://src/game_objects/bucket/bucket.tscn" id="11_m3sl2"]
 
 [sub_resource type="Environment" id="Environment_la7um"]
 
@@ -65,6 +66,12 @@ material_override = ExtResource("4_mpbj7")
 use_collision = true
 size = Vector3(1, 0.5, 0.5)
 
+[node name="CSGBox3D5" type="CSGBox3D" parent="CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0.75, 5.61109)
+material_override = ExtResource("4_mpbj7")
+use_collision = true
+size = Vector3(1, 0.5, 0.5)
+
 [node name="AxeHolder" parent="." instance=ExtResource("7_2tyx5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.518705, 1.04705, 0.281236)
 
@@ -78,7 +85,11 @@ transform = Transform3D(-4.37114e-08, -1, 4.88261e-11, -0.00111705, 7.96047e-15,
 transform = Transform3D(-4.37114e-08, -1, 4.88261e-11, -0.00111705, 7.96047e-15, -0.999999, 0.999999, -4.37114e-08, -0.00111705, 1.70687, 1.08011, 0.33195)
 
 [node name="AppartmentDoor" parent="." instance=ExtResource("4_w7y1s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0)
 _starts_locked = true
 
-[node name="fire_vfx" parent="." instance=ExtResource("10_idw2h")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.01433, 0.743763, 2.11901)
+[node name="Campfire" parent="." instance=ExtResource("10_idw2h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.01433, 0.547587, 2.11901)
+
+[node name="Bucket" parent="." instance=ExtResource("11_m3sl2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.99728, 0.5, 3.57225)

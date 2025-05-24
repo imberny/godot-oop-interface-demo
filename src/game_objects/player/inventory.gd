@@ -3,7 +3,6 @@ class_name Inventory extends Node
 @export var _items: Array[StringName] = []
 
 @export_group("Weaponry")
-@export var _hitscan_ray: HitscanRay
 @export var _primary_slot: AttachmentSlot
 
 var primary: Node
@@ -37,7 +36,6 @@ func equip_primary(weapon: Node) -> void:
 	var wieldable := Wieldable.try_get(weapon)
 	if wieldable:
 		wieldable.wield()
-		_hitscan_ray.damage = wieldable.get_damage()
 
 
 func unequip_primary() -> Node:
@@ -47,5 +45,4 @@ func unequip_primary() -> Node:
 	var wieldable := Wieldable.try_get(weapon)
 	if wieldable:
 		wieldable.drop()
-		_hitscan_ray.damage = 0
 	return weapon

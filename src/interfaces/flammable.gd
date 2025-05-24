@@ -1,11 +1,11 @@
-class_name Wieldable extends Interface
+class_name Flammable extends Interface
 
 #region boilerplate
 
-const INTERFACE_NAME := &"Wieldable"
+const INTERFACE_NAME := &"Flammable"
 
 
-static func try_get(from: Node) -> Wieldable:
+static func try_get(from: Node) -> Flammable:
 	return try_get_interface(INTERFACE_NAME, from)
 
 
@@ -16,14 +16,14 @@ func _get_interface_name() -> StringName:
 #endregion boilerplate
 
 
-func wield() -> void:
-	assert(false, "METHOD NOT IMPLEMENTED")
-
-
-func drop() -> void:
-	assert(false, "METHOD NOT IMPLEMENTED")
-
-
-func get_damage() -> int:
+func get_intensity() -> int:
 	assert(false, "METHOD NOT IMPLEMENTED")
 	return 0
+
+
+func ignite(_amount: int) -> void:
+	assert(false, "METHOD NOT IMPLEMENTED")
+
+
+func douse(_amount: int) -> void:
+	assert(false, "METHOD NOT IMPLEMENTED")

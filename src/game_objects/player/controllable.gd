@@ -13,8 +13,13 @@ extends Controllable
 @export_group("Combat")
 @export var _inventory: Inventory
 @export var _primary_weapon: WeaponSlot
+@export var _hitscan_ray: HitscanRay
 
 var _velocity: Vector3
+
+
+func _ready() -> void:
+	_hitscan_ray.hit.connect(_on_hitscan_ray_hit)
 
 
 func turn(turn_amount: Vector2, _delta: float) -> void:
@@ -29,12 +34,16 @@ func move(motion: Vector3, delta: float) -> void:
 		* ProjectSettings.get_setting("physics/3d/default_gravity_vector")
 	)
 
+	var smoothing := _acceleration
+	if motion.is_zero_approx():
+		smoothing = _deceleration
+
 	var local_motion := _body.basis * motion
 	var desired_velocity_xz := local_motion * _speed_max
 	var velocity_xz := Vector3(_velocity.x, 0.0, _velocity.z)
 	var velocity_y := Vector3(0.0, _velocity.y, 0.0) + gravity * delta
 	# https://www.rorydriscoll.com/2016/03/07/frame-rate-independent-damping-using-lerp/
-	velocity_xz = velocity_xz.lerp(desired_velocity_xz, 1.0 - exp(-_acceleration * delta))
+	velocity_xz = velocity_xz.lerp(desired_velocity_xz, 1.0 - exp(-smoothing * delta))
 	_velocity = velocity_xz + velocity_y
 	_body.velocity = _velocity
 	_body.move_and_slide()
@@ -64,3 +73,10 @@ func _try_attacking() -> void:
 func _try_jumping() -> void:
 	if _body.is_on_floor():
 		_velocity.y = _jump_speed
+
+
+func _on_hitscan_ray_hit(object: Node) -> void:
+	var attack := AttackPackage.new().with_weapon(_inventory.primary)
+	var hurtable := Hurtable.try_get(object)
+	if hurtable:
+		hurtable.hurt(attack)

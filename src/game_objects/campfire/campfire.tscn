@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://plgc0ruu44uj"]
+
+[ext_resource type="PackedScene" uid="uid://brobu08oev37t" path="res://src/effects/fire/fire_vfx.tscn" id="1_1wc4i"]
+[ext_resource type="Script" uid="uid://duw4ravdyy347" path="res://src/game_objects/campfire/interactable.gd" id="1_h0imq"]
+[ext_resource type="Material" uid="uid://dgjiw8udooecr" path="res://addons/prototype_mini_bundle/M_prototype_dark.tres" id="2_341la"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_h0imq"]
+radius = 0.428152
+
+[node name="Campfire" type="StaticBody3D"]
+collision_layer = 9
+
+[node name="Interactable" type="Node" parent="."]
+script = ExtResource("1_h0imq")
+metadata/_custom_type_script = "uid://ce4ve28fu8o2b"
+
+[node name="fire_vfx" parent="." instance=ExtResource("1_1wc4i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.143302, 0)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0.026825, -1.17256e-09, -0.0897347)
+radius = 0.0581055
+height = 0.623718
+material = ExtResource("2_341la")
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="."]
+transform = Transform3D(-2.62915e-08, 0.60148, -0.798888, -1, -4.37114e-08, 0, -3.49205e-08, 0.798888, 0.60148, 0.026825, -1.17256e-09, 0.000315666)
+radius = 0.0581055
+height = 0.623718
+material = ExtResource("2_341la")
+
+[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1.8781e-08, -0.42966, -0.902991, -0.914374, -0.365594, 0.173957, -0.40487, 0.825671, -0.39287, -0.0796122, 0.0421352, 0.0398218)
+radius = 0.0581055
+height = 0.474457
+material = ExtResource("2_341la")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.277936, 0)
+shape = SubResource("SphereShape3D_h0imq")

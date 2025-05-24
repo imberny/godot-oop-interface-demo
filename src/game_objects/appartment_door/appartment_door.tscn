@@ -11,6 +11,7 @@
 script = ExtResource("1_dcovl")
 
 [node name="Door" parent="." instance=ExtResource("1_1qfty")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 0)
 
 [node name="DoorLock" parent="Door" node_paths=PackedStringArray("_door") instance=ExtResource("2_dcovl")]
 transform = Transform3D(-0.999999, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -0.999999, 0.861975, 1.21927, 0.014651)

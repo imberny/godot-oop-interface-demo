@@ -1,9 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://dk2olj42clr1b"]
+[gd_scene load_steps=9 format=3 uid="uid://dk2olj42clr1b"]
 
 [ext_resource type="Material" uid="uid://dgjiw8udooecr" path="res://addons/prototype_mini_bundle/M_prototype_dark.tres" id="1_1awth"]
 [ext_resource type="Script" uid="uid://b4f5afqefvisg" path="res://src/game_objects/interactable_rigid_body_wield.gd" id="1_hq4cb"]
 [ext_resource type="Script" uid="uid://xyh1ng8w2a7e" path="res://src/game_objects/wieldable_rigid_body_3d.gd" id="1_s8bgg"]
 [ext_resource type="Material" uid="uid://7to3kb1tisdd" path="res://addons/prototype_mini_bundle/M_prototype_orange.tres" id="2_s8bgg"]
+[ext_resource type="Script" uid="uid://cc5e2akdd2q7k" path="res://src/game_objects/flammable.gd" id="3_raarp"]
+[ext_resource type="PackedScene" uid="uid://djabpahkhripd" path="res://src/effects/fire/fire_vfx_small.tscn" id="4_l7vj8"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hq4cb"]
 size = Vector3(0.0325879, 0.656708, 0.0347852)
@@ -25,6 +27,13 @@ metadata/_custom_type_script = "uid://ce4ve28fu8o2b"
 script = ExtResource("1_s8bgg")
 _damage = 3
 metadata/_custom_type_script = "uid://dvl0udcaxydew"
+
+[node name="Flammable" type="Node" parent="." node_paths=PackedStringArray("_flame_position")]
+script = ExtResource("3_raarp")
+_fire_scene = ExtResource("4_l7vj8")
+_flame_position = NodePath("../FlamesPosition")
+_intensity_max = 5
+metadata/_custom_type_script = "uid://7xy5w8jkap8c"
 
 [node name="Shaft" type="CSGCylinder3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0110463, 0)
@@ -105,3 +114,6 @@ shape = SubResource("BoxShape3D_hq4cb")
 [node name="WrappingsCollision" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.251263, 0)
 shape = SubResource("CapsuleShape3D_1awth")
+
+[node name="FlamesPosition" type="Marker3D" parent="."]
+transform = Transform3D(0.235, 0, 0, 0, 0.235, 0, 0, 0, 0.235, 0, 0.22835, 0)

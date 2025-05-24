@@ -13,15 +13,15 @@ static func try_get_interface(interface_name: StringName, from: Node) -> Interfa
 
 
 func _enter_tree() -> void:
-	var interface_name: StringName = get_interface_name()
+	var interface_name: StringName = _get_interface_name()
 	get_parent().set_meta(interface_name, self)
 
 
 func _exit_tree() -> void:
-	var interface_name: StringName = get_interface_name()
+	var interface_name: StringName = _get_interface_name()
 	get_parent().remove_meta(interface_name)
 
 
-func get_interface_name() -> StringName:
+func _get_interface_name() -> StringName:
 	assert(false, "METHOD NOT IMPLEMENTED")
 	return ""

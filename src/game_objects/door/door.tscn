@@ -1,13 +1,15 @@
-[gd_scene load_steps=32 format=3 uid="uid://cea6u4voyhnuk"]
+[gd_scene load_steps=34 format=3 uid="uid://cea6u4voyhnuk"]
 
 [ext_resource type="Script" uid="uid://bvahxbs0pja5j" path="res://src/game_objects/door/door.gd" id="1_dyg4d"]
 [ext_resource type="Script" uid="uid://cbsvbnfsy53et" path="res://src/game_objects/door/interactable.gd" id="2_dyg4d"]
 [ext_resource type="Material" uid="uid://dyx4l6ea0am6f" path="res://addons/prototype_mini_bundle/M_prototype_green.tres" id="2_vaedx"]
 [ext_resource type="Script" uid="uid://b8mc5xumjt3kj" path="res://src/game_objects/hurtable.gd" id="3_qxsa1"]
+[ext_resource type="Script" uid="uid://cc5e2akdd2q7k" path="res://src/game_objects/flammable.gd" id="4_b8tqg"]
 [ext_resource type="AudioStream" uid="uid://c00ikvep5ygq8" path="res://assets/sfx/door/door_open_creak.mp3" id="4_dyg4d"]
 [ext_resource type="PackedScene" uid="uid://dxita103a2bmf" path="res://src/components/health.tscn" id="4_s7sls"]
 [ext_resource type="AudioStream" uid="uid://b0k548udphxhf" path="res://assets/sfx/door/door_close.mp3" id="4_wepa6"]
 [ext_resource type="AudioStream" uid="uid://3w0fr20uijo7" path="res://assets/sfx/door/door_close_creak.mp3" id="5_bdnah"]
+[ext_resource type="PackedScene" uid="uid://brobu08oev37t" path="res://src/effects/fire/fire_vfx.tscn" id="5_w351a"]
 [ext_resource type="AudioStream" uid="uid://dliku61dqstge" path="res://assets/sfx/door/door_knock.wav" id="5_wepa6"]
 
 [sub_resource type="Animation" id="Animation_wepa6"]
@@ -278,6 +280,13 @@ script = ExtResource("3_qxsa1")
 _health = NodePath("../Health")
 metadata/_custom_type_script = "uid://cu2rw2dvul8tf"
 
+[node name="Flammable" type="Node" parent="." node_paths=PackedStringArray("_flame_position")]
+script = ExtResource("4_b8tqg")
+_fire_scene = ExtResource("5_w351a")
+_flame_position = NodePath("../FlamePosition")
+_intensity_decay_per_tick = 1
+metadata/_custom_type_script = "uid://7xy5w8jkap8c"
+
 [node name="Health" parent="." instance=ExtResource("4_s7sls")]
 _health_max = 30
 
@@ -324,3 +333,6 @@ bus = &"Sfx"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.46351, 1.34324, 2.38419e-07)
 stream = ExtResource("5_wepa6")
 bus = &"Sfx"
+
+[node name="FlamePosition" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1, 0.0522358)

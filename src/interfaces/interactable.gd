@@ -9,7 +9,7 @@ static func try_get(from: Node) -> Interactable:
 	return try_get_interface(INTERFACE_NAME, from)
 
 
-func get_interface_name() -> StringName:
+func _get_interface_name() -> StringName:
 	return INTERFACE_NAME
 
 

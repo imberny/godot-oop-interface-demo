@@ -263,24 +263,23 @@ animations = [{
 collision_layer = 4
 collision_mask = 7
 
-[node name="Controllable" type="Node" parent="." node_paths=PackedStringArray("_body", "_head", "_interactor_ray", "_inventory", "_primary_weapon")]
+[node name="Controllable" type="Node" parent="." node_paths=PackedStringArray("_body", "_head", "_interactor_ray", "_inventory", "_primary_weapon", "_hitscan_ray")]
 script = ExtResource("1_utwn8")
 _body = NodePath("..")
 _head = NodePath("../Head")
 _interactor_ray = NodePath("../Head/InteractorRay")
-_jump_speed = 3.0
 _inventory = NodePath("../Inventory")
 _primary_weapon = NodePath("../Head/PrimaryWeaponSlot")
+_hitscan_ray = NodePath("../Head/HitscanRay")
 metadata/_custom_type_script = "uid://daai380114h0v"
 
 [node name="Gearable" type="Node" parent="." node_paths=PackedStringArray("_inventory")]
 script = ExtResource("2_eihwr")
 _inventory = NodePath("../Inventory")
 
-[node name="Inventory" type="Node" parent="." node_paths=PackedStringArray("_hitscan_ray", "_primary_slot")]
+[node name="Inventory" type="Node" parent="." node_paths=PackedStringArray("_primary_slot")]
 script = ExtResource("2_e6o28")
 _items = Array[StringName]([&"key_1"])
-_hitscan_ray = NodePath("../Head/HitscanRay")
 _primary_slot = NodePath("../Head/PrimaryWeaponSlot")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -304,7 +303,7 @@ script = ExtResource("4_14xgr")
 _inventory = NodePath("../../Inventory")
 
 [node name="HitscanRay" type="RayCast3D" parent="Head"]
-target_position = Vector3(0, 0, -1)
+target_position = Vector3(0, 0, -1.5)
 collision_mask = 7
 script = ExtResource("7_57otq")
 _wood_impact_scene = ExtResource("8_57otq")

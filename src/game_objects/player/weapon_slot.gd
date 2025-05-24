@@ -13,4 +13,4 @@ func swing() -> void:
 
 
 func hit() -> void:
-	hitscan_ray.hit()
+	hitscan_ray.try_hit()
