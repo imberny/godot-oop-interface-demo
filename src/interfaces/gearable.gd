@@ -22,6 +22,11 @@ func has_primary() -> bool:
 	return false
 
 
+func get_primary() -> Node:
+	assert(false, "METHOD NOT IMPLEMENTED")
+	return null
+
+
 func equip_primary(_weapon: Node) -> void:
 	assert(false, "METHOD NOT IMPLEMENTED")
 

@@ -1,0 +1,107 @@
+[gd_scene load_steps=7 format=3 uid="uid://dk2olj42clr1b"]
+
+[ext_resource type="Material" uid="uid://dgjiw8udooecr" path="res://addons/prototype_mini_bundle/M_prototype_dark.tres" id="1_1awth"]
+[ext_resource type="Script" uid="uid://b4f5afqefvisg" path="res://src/game_objects/interactable_rigid_body_wield.gd" id="1_hq4cb"]
+[ext_resource type="Script" uid="uid://xyh1ng8w2a7e" path="res://src/game_objects/wieldable_rigid_body_3d.gd" id="1_s8bgg"]
+[ext_resource type="Material" uid="uid://7to3kb1tisdd" path="res://addons/prototype_mini_bundle/M_prototype_orange.tres" id="2_s8bgg"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hq4cb"]
+size = Vector3(0.0325879, 0.656708, 0.0347852)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1awth"]
+radius = 0.0372892
+height = 0.193579
+
+[node name="Torch" type="RigidBody3D"]
+collision_layer = 10
+collision_mask = 7
+
+[node name="Interactable" type="Node" parent="." node_paths=PackedStringArray("_wieldable")]
+script = ExtResource("1_hq4cb")
+_wieldable = NodePath("../Wieldable")
+metadata/_custom_type_script = "uid://ce4ve28fu8o2b"
+
+[node name="Wieldable" type="Node" parent="."]
+script = ExtResource("1_s8bgg")
+_damage = 3
+metadata/_custom_type_script = "uid://dvl0udcaxydew"
+
+[node name="Shaft" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0110463, 0)
+radius = 0.0180664
+height = 0.65
+material = ExtResource("1_1awth")
+
+[node name="Wrappings" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.184982, 0)
+radius = 0.0307617
+height = 0.0396423
+material = ExtResource("2_s8bgg")
+
+[node name="Wrappings2" type="CSGCylinder3D" parent="Wrappings"]
+transform = Transform3D(0.993805, -0.111139, 0, 0.111139, 0.993805, 0, 0, 0, 1, 0, 0.0128117, 0)
+radius = 0.0317383
+height = 0.0396423
+material = ExtResource("2_s8bgg")
+
+[node name="Wrappings3" type="CSGCylinder3D" parent="Wrappings"]
+transform = Transform3D(0.85913, 0.116693, 0.498276, -0.134592, 0.990901, 0, -0.493742, -0.0670637, 0.867019, 0, 0.0274728, 0)
+radius = 0.027832
+height = 0.0396423
+material = ExtResource("2_s8bgg")
+
+[node name="Wrappings4" type="CSGCylinder3D" parent="Wrappings"]
+transform = Transform3D(0.859069, -0.192371, 0.474335, 0.134978, 0.979028, 0.152594, -0.493742, -0.0670637, 0.867019, -0.00113191, 0.0439429, 0)
+radius = 0.0268555
+height = 0.0396423
+material = ExtResource("2_s8bgg")
+
+[node name="Wrappings5" type="CSGCylinder3D" parent="Wrappings"]
+transform = Transform3D(0.475908, 0.0405655, 0.878559, -0.08493, 0.996387, 0, -0.875385, -0.074616, 0.477634, -0.00100249, 0.0746849, 0.00132346)
+radius = 0.0307617
+height = 0.0396423
+material = ExtResource("2_s8bgg")
+
+[node name="Wrappings6" type="CSGCylinder3D" parent="Wrappings"]
+transform = Transform3D(0.477469, -0.012578, 0.878559, 0.026334, 0.999653, 0, -0.878254, 0.023136, 0.477634, -0.000482775, 0.0874504, 0.000367504)
+radius = 0.0317383
+height = 0.0396423
+material = ExtResource("2_s8bgg")
+
+[node name="Wrappings7" type="CSGCylinder3D" parent="Wrappings"]
+transform = Transform3D(-0.0303743, 0.0368123, 0.99886, -0.207071, 0.97741, -0.0423186, -0.977854, -0.208121, -0.0220653, 0.000111958, 0.102058, -0.000726447)
+radius = 0.027832
+height = 0.0396423
+material = ExtResource("2_s8bgg")
+
+[node name="Wrappings9" type="CSGCylinder3D" parent="Wrappings"]
+transform = Transform3D(0.477469, -0.012578, 0.878559, 0.026334, 0.999653, 0, -0.878254, 0.023136, 0.477634, -0.000482775, 0.127145, 0.000367504)
+radius = 0.0317383
+height = 0.0396423
+material = ExtResource("2_s8bgg")
+
+[node name="Wrappings10" type="CSGCylinder3D" parent="Wrappings"]
+transform = Transform3D(-0.0303743, 0.0368123, 0.99886, -0.207071, 0.97741, -0.0423186, -0.977854, -0.208121, -0.0220653, 0.000111958, 0.141753, -0.000726447)
+radius = 0.027832
+height = 0.0396423
+material = ExtResource("2_s8bgg")
+
+[node name="Wrappings8" type="CSGCylinder3D" parent="Wrappings"]
+transform = Transform3D(-0.0194678, -0.110756, 0.993657, 0.0615298, 0.991829, 0.111757, -0.997915, 0.0633152, -0.0124941, 0.000241388, 0.118565, -0.00096452)
+radius = 0.0268555
+height = 0.0396423
+material = ExtResource("2_s8bgg")
+
+[node name="Wrappings11" type="CSGCylinder3D" parent="Wrappings"]
+transform = Transform3D(-0.0194678, -0.110756, 0.993657, 0.0615298, 0.991829, 0.111757, -0.997915, 0.0633152, -0.0124941, 0.000241388, 0.0419837, -0.00096452)
+radius = 0.0371094
+height = 0.0396423
+material = ExtResource("2_s8bgg")
+
+[node name="ShaftCollision" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00213379, 0.0123749, -0.000185547)
+shape = SubResource("BoxShape3D_hq4cb")
+
+[node name="WrappingsCollision" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.251263, 0)
+shape = SubResource("CapsuleShape3D_1awth")
