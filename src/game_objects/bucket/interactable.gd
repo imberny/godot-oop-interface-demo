@@ -5,7 +5,7 @@ extends Interactable
 
 
 func get_action_name() -> StringName:
-	return &"douse"
+	return &"DOUSE"
 
 
 func can_interact(who: Node) -> bool:

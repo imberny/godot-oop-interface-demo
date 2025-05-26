@@ -12,8 +12,8 @@ var _is_peeping := false
 
 func get_action_name() -> StringName:
 	if _is_peeping:
-		return &"stop peeping"
-	return &"peep"
+		return &"STOP PEEPING"
+	return &"PEEP"
 
 
 func can_interact(who: Node) -> bool:

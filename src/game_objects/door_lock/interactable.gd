@@ -12,8 +12,8 @@ func _ready() -> void:
 
 func get_action_name() -> StringName:
 	if _door_lock.is_locked():
-		return "unlock"
-	return "lock"
+		return "UNLOCK"
+	return "LOCK"
 
 
 func can_interact(_who: Node) -> bool:

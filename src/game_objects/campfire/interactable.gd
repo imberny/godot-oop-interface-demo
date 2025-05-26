@@ -2,7 +2,7 @@ extends Interactable
 
 
 func get_action_name() -> StringName:
-	return &"ignite"
+	return &"IGNITE"
 
 
 func can_interact(who: Node) -> bool:

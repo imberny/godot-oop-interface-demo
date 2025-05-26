@@ -5,8 +5,8 @@ extends Interactable
 
 func get_action_name() -> StringName:
 	if _door.is_open():
-		return &"close"
-	return &"knock"
+		return &"CLOSE"
+	return &"KNOCK"
 
 
 func can_interact(who: Node) -> bool:

@@ -9,8 +9,8 @@ var _is_wielded := false
 
 func get_action_name() -> StringName:
 	if _is_wielded:
-		return &"drop"
-	return &"wield"
+		return &"DROP"
+	return &"WIELD"
 
 
 func can_interact(who: Node) -> bool:
